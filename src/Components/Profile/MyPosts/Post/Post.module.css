@@ -1,0 +1,12 @@
+.item {
+    color: blanchedalmond;
+    border: 2px solid blanchedalmond;
+    width: 50%;
+    margin: 3%;
+    padding: 3%;
+    border-radius: 5px;
+}
+.item img {
+    width: 50px;
+    border-radius: 5px;
+}
