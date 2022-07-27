@@ -1,10 +1,10 @@
 import React from "react";
 import {MyPosts} from "../MyPosts/MyPosts/MyPosts";
 import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
-import {PostsType} from "../../../index";
+import {ProfilePageType} from "../../State/State";
 
 
-export const Profile = ({posts}: PostsType) => {
+export const Profile = ({posts}: ProfilePageType) => {
 
     return (
         <div>

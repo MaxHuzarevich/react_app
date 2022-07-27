@@ -1,8 +1,8 @@
 import React from "react";
 import {Post} from "../Post/Post";
-import {PostsType} from "../../../../index";
+import {ProfilePageType} from "../../../State/State";
 
-export const MyPosts = ({posts}:PostsType) => {
+export const MyPosts = ({posts}:ProfilePageType) => {
 
     const postsData = posts.map(p =>
         <Post

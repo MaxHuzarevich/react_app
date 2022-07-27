@@ -8,16 +8,17 @@ import {Route} from 'react-router-dom';
 import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/News";
 import {Settings} from "./Components/Settings/Setings";
-import {UnionType} from "./index";
+import {StateType} from "./Components/State/State";
 
-function App({dialogs, messages, posts}: UnionType) {
+function App({dialogsPage, profilePage}: StateType) {
     return (
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
-                <Route path='/dialogs' render={() => <Dialogs messages={messages} dialogs={dialogs}/>}/>
-                <Route path='/profile' render={() => <Profile posts={posts}/>}/>
+                <Route path='/dialogs'
+                       render={() => <Dialogs messages={dialogsPage.messages} dialogs={dialogsPage.dialogs}/>}/>
+                <Route path='/profile' render={() => <Profile posts={profilePage.posts}/>}/>
                 <Route path='/news' component={Music}/>
                 <Route path='/music' component={News}/>
                 <Route path='/settings' component={Settings}/>

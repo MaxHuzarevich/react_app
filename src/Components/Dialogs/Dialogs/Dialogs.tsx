@@ -2,9 +2,9 @@ import React from "react";
 import classes from './Dialogs.module.css'
 import {DialogItem} from "../DialogItem/DialogItem";
 import {Message} from "../Message/Message";
-import {DialogsType} from "../../../index";
+import {DialogsPageType} from "../../State/State";
 
-export const Dialogs = ({dialogs,messages}:DialogsType) => {
+export const Dialogs = ({dialogs,messages}:DialogsPageType) => {
 
     const dialogsData = dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
     const messagesData = messages.map(m => <Message message={m.message} key={m.id}/>)
