@@ -1,3 +1,5 @@
+import {RerenderEntireTree} from "../../Render";
+
 export type dialogType = {
     id: number
     name: string
@@ -36,7 +38,8 @@ export const AddNewPost = (message: string) => {
         like: 0,
         dislike: 0
     }
-   State.profilePage.posts.push(NewMessage)
+    State.profilePage.posts.push(NewMessage)
+    RerenderEntireTree();
 }
 
 export const State: StateType = {

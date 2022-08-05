@@ -27,9 +27,8 @@ export const MyPosts = ({posts, AddNewPost}: MyPostsType) => {
     return (
         <div>
             <div>
-                My posts
                 <div>
-                    new post
+                    My posts
                 </div>
                 <textarea ref={newPostElement}/>
                 <button onClick={addPost}>Add Post</button>
