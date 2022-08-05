@@ -1,8 +1,13 @@
 import React from "react";
 import {Post} from "../Post/Post";
-import {ProfilePageType} from "../../../State/State";
+import {postType} from "../../../State/State";
 
-export const MyPosts = ({posts}:ProfilePageType) => {
+type MyPostsType = {
+    posts: postType[]
+    AddNewPost: (message: string) => void
+}
+
+export const MyPosts = ({posts, AddNewPost}: MyPostsType) => {
 
     const postsData = posts.map(p =>
         <Post
@@ -12,6 +17,13 @@ export const MyPosts = ({posts}:ProfilePageType) => {
             key={p.id}/>
     )
 
+    const newPostElement = React.createRef<HTMLTextAreaElement>()
+
+    const addPost = () => {
+        if(newPostElement.current){
+        AddNewPost(newPostElement.current.value)}
+    }
+
     return (
         <div>
             <div>
@@ -19,10 +31,8 @@ export const MyPosts = ({posts}:ProfilePageType) => {
                 <div>
                     new post
                 </div>
-                <textarea>
-
-                </textarea>
-                <button>Add Post</button>
+                <textarea ref={newPostElement}/>
+                <button onClick={addPost}>Add Post</button>
                 <button>Remove Post</button>
             </div>
             {postsData}

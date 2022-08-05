@@ -1,4 +1,3 @@
-
 export type dialogType = {
     id: number
     name: string
@@ -17,7 +16,7 @@ export type postType = {
 }
 
 export type ProfilePageType = {
-    posts: postType[]
+    posts: postType[],
 }
 
 export type DialogsPageType = {
@@ -30,7 +29,17 @@ export type StateType = {
     dialogsPage: DialogsPageType,
 }
 
-export const State:StateType = {
+export const AddNewPost = (message: string) => {
+    let NewMessage: postType = {
+        id: 5,
+        message,
+        like: 0,
+        dislike: 0
+    }
+   State.profilePage.posts.push(NewMessage)
+}
+
+export const State: StateType = {
     profilePage: {
         posts: [
             {id: 1, message: 'Hi!', like: 1, dislike: 3},
