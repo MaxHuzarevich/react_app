@@ -1,4 +1,6 @@
-import {RerenderEntireTree} from "../../Render";
+let RerenderEntireTree = () => {
+    console.log('State changed!')
+}
 
 export type dialogType = {
     id: number
@@ -19,7 +21,7 @@ export type postType = {
 
 export type ProfilePageType = {
     posts: postType[]
-    newPostText:string
+    newPostText: string
 }
 
 export type DialogsPageType = {
@@ -49,6 +51,9 @@ export const updateNewPostText = (newText: string) => {
     RerenderEntireTree();
 }
 
+export const Subscribe = (observer: () => void) => {
+    RerenderEntireTree = observer
+}
 
 export const State: StateType = {
     profilePage: {
