@@ -18,7 +18,7 @@ function App({dialogsPage, profilePage}: StateType) {
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
                        render={() => <Dialogs messages={dialogsPage.messages} dialogs={dialogsPage.dialogs}/>}/>
-                <Route path='/profile' render={() => <Profile posts={profilePage.posts}/>}/>
+                <Route path='/profile' render={() => <Profile posts={profilePage.posts} newPostText={profilePage.newPostText}/>}/>
                 <Route path='/news' component={Music}/>
                 <Route path='/music' component={News}/>
                 <Route path='/settings' component={Settings}/>

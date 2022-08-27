@@ -18,7 +18,8 @@ export type postType = {
 }
 
 export type ProfilePageType = {
-    posts: postType[],
+    posts: postType[]
+    newPostText:string
 }
 
 export type DialogsPageType = {
@@ -31,16 +32,23 @@ export type StateType = {
     dialogsPage: DialogsPageType,
 }
 
-export const AddNewPost = (message: string) => {
+export const AddNewPost = () => {
     let NewMessage: postType = {
         id: 5,
-        message,
+        message: State.profilePage.newPostText,
         like: 0,
         dislike: 0
-    }
-    State.profilePage.posts.push(NewMessage)
+    };
+    State.profilePage.posts.push(NewMessage);
+    State.profilePage.newPostText = '';
     RerenderEntireTree();
 }
+
+export const updateNewPostText = (newText: string) => {
+    State.profilePage.newPostText = newText
+    RerenderEntireTree();
+}
+
 
 export const State: StateType = {
     profilePage: {
@@ -50,7 +58,8 @@ export const State: StateType = {
             {id: 3, message: 'What?!', like: 5, dislike: 6},
             {id: 4, message: 'I love deep !!!', like: 7, dislike: 1},
             {id: 5, message: 'What is your name?', like: 2, dislike: 0},
-        ]
+        ],
+        newPostText: 'Enter your text'
     },
     dialogsPage: {
         dialogs: [

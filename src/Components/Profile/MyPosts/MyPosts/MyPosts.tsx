@@ -5,9 +5,11 @@ import {postType} from "../../../State/State";
 type MyPostsType = {
     posts: postType[]
     AddNewPost: (message: string) => void
+    newPostText: string
+    updateNewPostText: (newText: string) => void
 }
 
-export const MyPosts = ({posts, AddNewPost}: MyPostsType) => {
+export const MyPosts = ({posts, AddNewPost, newPostText, updateNewPostText}: MyPostsType) => {
 
     const postsData = posts.map(p =>
         <Post
@@ -20,8 +22,16 @@ export const MyPosts = ({posts, AddNewPost}: MyPostsType) => {
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
-        if(newPostElement.current){
-        AddNewPost(newPostElement.current.value)}
+        if (newPostElement.current) {
+            AddNewPost(newPostElement.current.value)
+        }
+        updateNewPostText('')
+    }
+
+    const onPostChange = () => {
+        if (newPostElement.current) {
+            updateNewPostText(newPostElement.current.value)
+        }
     }
 
     return (
@@ -30,7 +40,7 @@ export const MyPosts = ({posts, AddNewPost}: MyPostsType) => {
                 <div>
                     My posts
                 </div>
-                <textarea ref={newPostElement}/>
+                <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
                 <button onClick={addPost}>Add Post</button>
                 <button>Remove Post</button>
             </div>

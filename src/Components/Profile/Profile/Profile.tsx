@@ -1,15 +1,15 @@
 import React from "react";
 import {MyPosts} from "../MyPosts/MyPosts/MyPosts";
 import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
-import {AddNewPost, ProfilePageType} from "../../State/State";
+import {AddNewPost, ProfilePageType, updateNewPostText} from "../../State/State";
 
 
-export const Profile = ({posts}: ProfilePageType) => {
+export const Profile = ({posts,newPostText}: ProfilePageType) => {
 
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={posts} AddNewPost={AddNewPost}/>
+            <MyPosts updateNewPostText={updateNewPostText} posts={posts} AddNewPost={AddNewPost} newPostText={newPostText}/>
         </div>
     )
 }
