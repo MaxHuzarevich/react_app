@@ -10,9 +10,8 @@ export const Profile = ({posts, newPostText}: ProfilePageType) => {
         <div>
             <ProfileInfo/>
             <MyPosts
-                updateNewPostText={store.updateNewPostText.bind(store)}
+                dispatch={store.dispatch.bind(store)}
                 posts={posts}
-                AddNewPost={store.addNewPost.bind(store)}
                 newPostText={newPostText}/>
         </div>
     )

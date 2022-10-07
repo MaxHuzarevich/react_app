@@ -1,15 +1,14 @@
 import React from "react";
 import {Post} from "../Post/Post";
-import {postType} from "../../../State/State";
+import {actionType, postType} from "../../../State/State";
 
 type MyPostsType = {
     posts: postType[]
-    AddNewPost: (message: string) => void
     newPostText: string
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: actionType) => void
 }
 
-export const MyPosts = ({posts, AddNewPost, newPostText, updateNewPostText}: MyPostsType) => {
+export const MyPosts = ({posts, newPostText, dispatch}: MyPostsType) => {
 
     const postsData = posts.map(p =>
         <Post
@@ -23,14 +22,14 @@ export const MyPosts = ({posts, AddNewPost, newPostText, updateNewPostText}: MyP
 
     const addPost = () => {
         if (newPostElement.current) {
-            AddNewPost(newPostElement.current.value)
+            dispatch({type: 'ADD-POST', newPost: newPostElement.current.value})
         }
-        updateNewPostText('')
+        dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: ''})
     }
 
     const onPostChange = () => {
         if (newPostElement.current) {
-            updateNewPostText(newPostElement.current.value)
+            dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value})
         }
     }
 
