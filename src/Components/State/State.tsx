@@ -40,15 +40,23 @@ export type storeType = {
 
 export type actionType = addPostActionType | updateNewPostText
 
-export type addPostActionType = {
-    type: 'ADD-POST'
-    newPost: string
+export const addPostAC = (newPost:string) => {
+    return {
+        type: 'ADD-POST',
+        newPost
+    } as const
 }
 
-export type updateNewPostText = {
-    type: 'UPDATE-NEW-POST-TEXT'
-    newText: string
+export const updateNewPostTextAC = (newText:string) => {
+    return {
+        type:'UPDATE-NEW-POST-TEXT',
+        newText
+    } as const                        //воспринимай как константу
 }
+
+export type addPostActionType = ReturnType<typeof addPostAC>     //возвращаемый тип
+
+export type updateNewPostText = ReturnType<typeof updateNewPostTextAC>
 
 export let store: storeType = {
     _state: {

@@ -1,6 +1,6 @@
 import React from "react";
 import {Post} from "../Post/Post";
-import {actionType, postType} from "../../../State/State";
+import {actionType, addPostAC, postType, updateNewPostTextAC} from "../../../State/State";
 
 type MyPostsType = {
     posts: postType[]
@@ -22,14 +22,14 @@ export const MyPosts = ({posts, newPostText, dispatch}: MyPostsType) => {
 
     const addPost = () => {
         if (newPostElement.current) {
-            dispatch({type: 'ADD-POST', newPost: newPostElement.current.value})
+            dispatch(addPostAC(newPostElement.current.value))
         }
-        dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: ''})
+        dispatch(updateNewPostTextAC(''))
     }
 
     const onPostChange = () => {
         if (newPostElement.current) {
-            dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value})
+            dispatch(updateNewPostTextAC(newPostElement.current.value))
         }
     }
 
