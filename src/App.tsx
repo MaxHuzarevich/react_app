@@ -8,17 +8,25 @@ import {Route} from 'react-router-dom';
 import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/News";
 import {Settings} from "./Components/Settings/Setings";
-import {StateType} from "./Components/State/State";
+import {storeType} from "./Components/State/State";
 
-function App({dialogsPage, profilePage}: StateType) {
+export type PropsType = {
+    store: storeType
+}
+
+function App({store}: PropsType) {
+
+    const state = store.getState()
+
     return (
         <div className='app-wrapper'>
             <Header/>
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <Dialogs messages={dialogsPage.messages} dialogs={dialogsPage.dialogs}/>}/>
-                <Route path='/profile' render={() => <Profile posts={profilePage.posts} newPostText={profilePage.newPostText}/>}/>
+                       render={() => <Dialogs messages={state.dialogsPage.messages} dialogs={state.dialogsPage.dialogs}/>}/>
+                <Route path='/profile'
+                       render={() => <Profile posts={state.profilePage.posts} newPostText={state.profilePage.newPostText}/>}/>
                 <Route path='/news' component={Music}/>
                 <Route path='/music' component={News}/>
                 <Route path='/settings' component={Settings}/>

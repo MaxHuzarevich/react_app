@@ -3,12 +3,12 @@ import './index.css';
 import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import App from "./App";
-import {State, Subscribe} from "./Components/State/State";
+import {store} from "./Components/State/State";
 
 const RerenderEntireTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App dialogsPage={State.dialogsPage} profilePage={State.profilePage} />
+            <App store={store}/>
         </BrowserRouter>,
         document.getElementById('root')
     );
@@ -16,4 +16,4 @@ const RerenderEntireTree = () => {
 
 RerenderEntireTree();
 
-Subscribe(RerenderEntireTree);
+store.subscribe(RerenderEntireTree);
