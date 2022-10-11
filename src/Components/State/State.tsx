@@ -1,3 +1,6 @@
+import {ADD_POST, profileReducer, UPDATE_NEW_POST_TEXT} from "./profile-reducer";
+import {ADD_NEW_MESSAGE_TEXT, dialogsReducer, UPDATE_NEW_MESSAGE_TEXT} from "./dialogs-reducer";
+
 export type dialogType = {
     id: number
     name: string
@@ -43,28 +46,28 @@ export type actionType = addPostActionType | updateNewPostText | updateNewMessag
 
 export const addPostAC = (newPost: string) => {
     return {
-        type: 'ADD-POST',
+        type: ADD_POST,
         newPost
     } as const
 }
 
 export const updateNewPostTextAC = (newText: string) => {
     return {
-        type: 'UPDATE-NEW-POST-TEXT',
+        type: UPDATE_NEW_POST_TEXT,
         newText
     } as const                        //воспринимай как константу
 }
 
 export const updateNewMessageTextAC = (messageText: string) => {
     return {
-        type: 'UPDATE-NEW-MESSAGE-TEXT',
+        type: UPDATE_NEW_MESSAGE_TEXT,
         messageText
     } as const
 }
 
 export const addNewMessageTextAC = (newMessage: string) => {
     return {
-        type: 'ADD-NEW-MESSAGE-TEXT',
+        type: ADD_NEW_MESSAGE_TEXT,
         newMessage
     } as const
 }
@@ -117,28 +120,10 @@ export let store: storeType = {
         this._callSubscriber = observer
     },
     dispatch(action: actionType) {
-        if (action.type === 'ADD-POST') {
-            let NewMessage: postType = {
-                id: 5,
-                message: action.newPost,
-                like: 0,
-                dislike: 0
-            };
-            this._state.profilePage.posts.push(NewMessage);
-            this._state.profilePage.newPostText = '';
+            this._state.profilePage = profileReducer(this._state.profilePage, action)
+            this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
             this._callSubscriber();
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber();
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageBody = action.messageText
-            this._callSubscriber();
-        } else if (action.type === 'ADD-NEW-MESSAGE-TEXT') {
-            let message = this._state.dialogsPage.newMessageBody;
-            this._state.dialogsPage.newMessageBody = ''
-            this._state.dialogsPage.messages.push({id:8, message})
-            this._callSubscriber()
-        }
+
     },
 }
 
