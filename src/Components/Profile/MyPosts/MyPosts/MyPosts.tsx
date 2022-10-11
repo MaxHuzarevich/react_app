@@ -22,7 +22,6 @@ export const MyPosts = ({posts, newPostText, dispatch}: MyPostsType) => {
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
-        debugger
         if (newPostElement.current) {
             dispatch(addPostAC(newPostElement.current.value))
         }

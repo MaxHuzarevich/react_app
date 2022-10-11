@@ -8,13 +8,10 @@ import {Route} from 'react-router-dom';
 import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/News";
 import {Settings} from "./Components/Settings/Setings";
-import {storeType} from "./Components/State/State";
+import {store} from "./Components/State/redux-store";
 
-export type PropsType = {
-    store: storeType
-}
 
-function App({store}: PropsType) {
+function App() {
 
     const state = store.getState()
 
@@ -24,9 +21,13 @@ function App({store}: PropsType) {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <Dialogs newMessageBody={state.dialogsPage.newMessageBody}  messages={state.dialogsPage.messages} dialogs={state.dialogsPage.dialogs}/>}/>
+                       render={() => <Dialogs
+                           newMessageBody={state.dialogsPage.dialogsPage.newMessageBody}
+                           messages={state.dialogsPage.dialogsPage.messages} dialogs={state.dialogsPage.dialogsPage.dialogs}/>}/>
                 <Route path='/profile'
-                       render={() => <Profile posts={state.profilePage.posts} newPostText={state.profilePage.newPostText}/>}/>
+                       render={() => <Profile
+                           posts={state.profilePage.profilePage.posts}
+                           newPostText={state.profilePage.profilePage.newPostText}/>}/>
                 <Route path='/news' component={Music}/>
                 <Route path='/music' component={News}/>
                 <Route path='/settings' component={Settings}/>

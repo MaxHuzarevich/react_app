@@ -20,8 +20,20 @@ export const updateNewPostTextAC = (newText: string) => {
 export type addPostActionType = ReturnType<typeof addPostAC>     //возвращаемый тип
 export type updateNewPostText = ReturnType<typeof updateNewPostTextAC>
 
-export const profileReducer = (state: ProfilePageType, action: actionType) => {
-    debugger
+let initialState = {
+    profilePage: {
+        posts: [
+            {id: 1, message: 'Hi!', like: 1, dislike: 3},
+            {id: 2, message: 'Hello!', like: 2, dislike: 1},
+            {id: 3, message: 'What?!', like: 5, dislike: 6},
+            {id: 4, message: 'I love deep !!!', like: 7, dislike: 1},
+            {id: 5, message: 'What is your name?', like: 2, dislike: 0},
+        ],
+        newPostText: 'Enter your text'
+    }
+}
+
+export const profileReducer = (state = initialState, action: actionType) => {
     switch (action.type) {
         case ADD_POST:
             let NewMessage: postType = {
@@ -30,11 +42,11 @@ export const profileReducer = (state: ProfilePageType, action: actionType) => {
                 like: 0,
                 dislike: 0
             };
-            state.posts.push(NewMessage);
-            state.newPostText = '';
+            state.profilePage.posts.push(NewMessage);
+            state.profilePage.newPostText = '';
             break;
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText
+            state.profilePage.newPostText = action.newText
             break;
     }
     return state

@@ -20,15 +20,35 @@ export const addNewMessageTextAC = (newMessage: string) => {
 export type updateNewMessageText = ReturnType<typeof updateNewMessageTextAC>
 export type addNewMessageText = ReturnType<typeof addNewMessageTextAC>
 
-export const dialogsReducer = (state: DialogsPageType, action: actionType) => {
+let initialState = {
+    dialogsPage: {
+        dialogs: [
+            {id: 1, name: 'Josh'},
+            {id: 2, name: 'Matt'},
+            {id: 3, name: 'Fill'},
+            {id: 4, name: 'Bob'},
+            {id: 5, name: 'Cris'},
+        ],
+        messages: [
+            {id: 1, message: 'Hi!'},
+            {id: 2, message: 'Hello!'},
+            {id: 3, message: 'Go!'},
+            {id: 4, message: 'What!'},
+            {id: 5, message: 'Ooo!'},
+        ],
+        newMessageBody: 'Enter your message'
+    }
+}
+
+export const dialogsReducer = (state = initialState, action: actionType) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:
-            state.newMessageBody = action.messageText
+            state.dialogsPage.newMessageBody = action.messageText
             break;
         case ADD_NEW_MESSAGE_TEXT:
-            let message = state.newMessageBody;
-            state.newMessageBody = ''
-            state.messages.push({id: 8, message})
+            let message = state.dialogsPage.newMessageBody;
+            state.dialogsPage.newMessageBody = ''
+            state.dialogsPage.messages.push({id: 8, message})
             break;
     }
     return state
