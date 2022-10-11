@@ -1,5 +1,5 @@
-import {ADD_POST, profileReducer, UPDATE_NEW_POST_TEXT} from "./profile-reducer";
-import {ADD_NEW_MESSAGE_TEXT, dialogsReducer, UPDATE_NEW_MESSAGE_TEXT} from "./dialogs-reducer";
+import {addPostActionType, profileReducer, updateNewPostText} from "./profile-reducer";
+import {addNewMessageText, dialogsReducer, updateNewMessageText} from "./dialogs-reducer";
 
 export type dialogType = {
     id: number
@@ -44,42 +44,6 @@ export type storeType = {
 
 export type actionType = addPostActionType | updateNewPostText | updateNewMessageText | addNewMessageText
 
-export const addPostAC = (newPost: string) => {
-    return {
-        type: ADD_POST,
-        newPost
-    } as const
-}
-
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText
-    } as const                        //воспринимай как константу
-}
-
-export const updateNewMessageTextAC = (messageText: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_TEXT,
-        messageText
-    } as const
-}
-
-export const addNewMessageTextAC = (newMessage: string) => {
-    return {
-        type: ADD_NEW_MESSAGE_TEXT,
-        newMessage
-    } as const
-}
-
-export type addPostActionType = ReturnType<typeof addPostAC>     //возвращаемый тип
-
-export type updateNewPostText = ReturnType<typeof updateNewPostTextAC>
-
-export type updateNewMessageText = ReturnType<typeof updateNewMessageTextAC>
-
-export type addNewMessageText = ReturnType<typeof addNewMessageTextAC>
-
 export let store: storeType = {
     _state: {
         profilePage: {
@@ -120,6 +84,7 @@ export let store: storeType = {
         this._callSubscriber = observer
     },
     dispatch(action: actionType) {
+        debugger
             this._state.profilePage = profileReducer(this._state.profilePage, action)
             this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
             this._callSubscriber();

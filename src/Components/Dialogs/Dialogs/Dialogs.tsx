@@ -2,7 +2,8 @@ import React, {ChangeEvent} from "react";
 import classes from './Dialogs.module.css'
 import {DialogItem} from "../DialogItem/DialogItem";
 import {Message} from "../Message/Message";
-import {addNewMessageTextAC, DialogsPageType, store, updateNewMessageTextAC} from "../../State/State";
+import {DialogsPageType, store} from "../../State/State";
+import {addNewMessageTextAC, updateNewMessageTextAC} from "../../State/dialogs-reducer";
 
 export const Dialogs = ({dialogs, messages}: DialogsPageType) => {
 

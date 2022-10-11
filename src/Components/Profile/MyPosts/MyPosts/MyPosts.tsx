@@ -1,6 +1,7 @@
 import React from "react";
 import {Post} from "../Post/Post";
-import {actionType, addPostAC, postType, updateNewPostTextAC} from "../../../State/State";
+import {actionType, postType} from "../../../State/State";
+import {addPostAC, updateNewPostTextAC} from "../../../State/profile-reducer";
 
 type MyPostsType = {
     posts: postType[]
@@ -21,6 +22,7 @@ export const MyPosts = ({posts, newPostText, dispatch}: MyPostsType) => {
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const addPost = () => {
+        debugger
         if (newPostElement.current) {
             dispatch(addPostAC(newPostElement.current.value))
         }
