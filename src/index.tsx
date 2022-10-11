@@ -17,6 +17,6 @@ const RerenderEntireTree = () => {
 RerenderEntireTree();
 
 store.subscribe(() => {
-    let state = store.getState()
+    // let state = store.getState()
     RerenderEntireTree()
 });
