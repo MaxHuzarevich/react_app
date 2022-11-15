@@ -1,37 +1,33 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import {Post} from "../Post/Post";
-import {actionType, postType} from "../../../State/State";
-import {addPostAC, updateNewPostTextAC} from "../../../State/profile-reducer";
+import {postType} from "../../../State/State";
 
 type MyPostsType = {
     posts: postType[]
     newPostText: string
-    dispatch: (action: actionType) => void
+    addPost: () => void
+    updateNewPostText: (e:ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-export const MyPosts = ({posts, newPostText, dispatch}: MyPostsType) => {
+export const MyPosts = ({posts, newPostText, addPost, updateNewPostText}: MyPostsType) => {
 
     const postsData = posts.map(p =>
         <Post
             message={p.message}
             like={p.like}
             dislike={p.dislike}
-            key={p.id}/>
+            key={p.id}
+        />
     )
 
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    const addPost = () => {
-        if (newPostElement.current) {
-            dispatch(addPostAC(newPostElement.current.value))
-        }
-        dispatch(updateNewPostTextAC(''))
+    const AddPost = () => {
+        addPost()
     }
 
-    const onPostChange = () => {
-        if (newPostElement.current) {
-            dispatch(updateNewPostTextAC(newPostElement.current.value))
-        }
+    const onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
+        updateNewPostText(e)
     }
 
     return (
@@ -41,7 +37,7 @@ export const MyPosts = ({posts, newPostText, dispatch}: MyPostsType) => {
                     My posts
                 </div>
                 <textarea onChange={onPostChange} ref={newPostElement} value={newPostText}/>
-                <button onClick={addPost}>Add Post</button>
+                <button onClick={AddPost}>Add Post</button>
                 <button>Remove Post</button>
             </div>
             {postsData}

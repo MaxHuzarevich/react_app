@@ -3,25 +3,30 @@ import classes from './Dialogs.module.css'
 import {DialogItem} from "../DialogItem/DialogItem";
 import {Message} from "../Message/Message";
 import {DialogsPageType} from "../../State/State";
-import {addNewMessageTextAC, updateNewMessageTextAC} from "../../State/dialogs-reducer";
-import {store} from "../../State/redux-store";
 
-export const Dialogs = ({dialogs, messages}: DialogsPageType) => {
+type DialogsType = {
+    onSendMessageClick: () => void
+    onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+    dialogs: DialogsPageType
+    newMessageBody: string
+}
 
-    let state = store.getState().dialogsPage
+export const Dialogs = ({
+                            onNewMessageChange,
+                            onSendMessageClick,
+                            dialogs,
+                            newMessageBody
+                        }: DialogsType) => {
 
-    const dialogsData = state.dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
-    const messagesData = state.dialogsPage.messages.map(m => <Message message={m.message} key={m.id}/>)
+    const dialogsData = dialogs.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
+    const messagesData = dialogs.messages.map(m => <Message message={m.message} key={m.id}/>)
 
-    const onSendMessageClick = () => {
-         store.dispatch(addNewMessageTextAC(newMessageText))
-        store.dispatch(updateNewMessageTextAC(''))
+    const onSendMessage = () => {
+        onSendMessageClick()
     }
-    const onNewMessageChange = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.currentTarget.value
-        store.dispatch(updateNewMessageTextAC(body))
+    const newMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        onNewMessageChange(e)
     }
-    let newMessageText = store.getState().dialogsPage.dialogsPage.newMessageBody
 
     return (
         <div className={classes.dialogs}>
@@ -32,12 +37,12 @@ export const Dialogs = ({dialogs, messages}: DialogsPageType) => {
                 {messagesData}
                 <div>
                     <textarea
-                        value={newMessageText}
-                        onChange={onNewMessageChange}
+                        value={newMessageBody}
+                        onChange={newMessageChange}
                     />
                 </div>
                 <div>
-                    <button onClick={onSendMessageClick}>add</button>
+                    <button onClick={onSendMessage}>add</button>
                 </div>
             </div>
         </div>
