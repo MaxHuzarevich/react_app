@@ -1,15 +1,5 @@
 import {addPostActionType, updateNewPostText} from "./profile-reducer";
-import {addNewMessageText, updateNewMessageText} from "./dialogs-reducer";
-
-export type dialogType = {
-    id: number
-    name: string
-}
-
-export type messageType = {
-    id: number
-    message: string
-}
+import {addNewMessageText, dialogType, messageType, updateNewMessageText} from "./dialogs-reducer";
 
 export type postType = {
     id: number

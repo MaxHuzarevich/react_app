@@ -1,17 +1,11 @@
 import React, {ChangeEvent} from "react";
+import {MyPostsType} from "./MyPostsContainer";
 import {Post} from "../Post/Post";
-import {postType} from "../../../State/State";
+import {store} from "../../../State/redux-store";
 
-type MyPostsType = {
-    posts: postType[]
-    newPostText: string
-    addPost: () => void
-    updateNewPostText: (e:ChangeEvent<HTMLTextAreaElement>) => void
-}
+export const MyPosts = ({newPostText,addPost,updateNewPostText}: MyPostsType) => {
 
-export const MyPosts = ({posts, newPostText, addPost, updateNewPostText}: MyPostsType) => {
-
-    const postsData = posts.map(p =>
+    const postsData = store.getState().profilePage.posts.map(p =>
         <Post
             message={p.message}
             like={p.like}
@@ -23,7 +17,7 @@ export const MyPosts = ({posts, newPostText, addPost, updateNewPostText}: MyPost
     const newPostElement = React.createRef<HTMLTextAreaElement>()
 
     const AddPost = () => {
-        addPost()
+        addPost(newPostText)
     }
 
     const onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) => {

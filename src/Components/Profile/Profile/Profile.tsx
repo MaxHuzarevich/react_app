@@ -1,6 +1,6 @@
 import React from "react";
 import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
-import {MyPostsContainer} from "../MyPosts/MyPosts/MyPostsContainer";
+import {SuperMyPostContainer} from "../MyPosts/MyPosts/MyPostsContainer";
 
 
 export const Profile = () => {
@@ -8,7 +8,7 @@ export const Profile = () => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer/>
+            <SuperMyPostContainer/>
         </div>
     )
 }

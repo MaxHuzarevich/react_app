@@ -7,8 +7,7 @@ import {Route} from 'react-router-dom';
 import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/News";
 import {Settings} from "./Components/Settings/Setings";
-import {DialogsContainer} from "./Components/Dialogs/Dialogs/DialogsContainer";
-
+import {SuperDialogsContainer} from "./Components/Dialogs/Dialogs/DialogsContainer";
 
 function App() {
     return (
@@ -17,7 +16,7 @@ function App() {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <DialogsContainer/>}/>
+                       render={() => <SuperDialogsContainer/>}/>
                 <Route path='/profile'
                        render={() => <Profile/>}/>
                 <Route path='/news' component={Music}/>
