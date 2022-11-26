@@ -1,10 +1,12 @@
 import React, {ChangeEvent} from "react";
-import {addPostAC, updateNewPostTextAC} from "../../../State/profile-reducer";
+import {addPostAC, initialStateProfileType, postType, updateNewPostTextAC} from "../../../State/profile-reducer";
 import {MyPosts} from "./MyPosts";
-import {store} from "../../../State/redux-store";
 import {connect} from "react-redux";
-import {postType, StateType} from "../../../State/State";
 import {Dispatch} from "redux";
+
+export type StateType = {
+    profilePage: initialStateProfileType,
+}
 
 export type mapDispatchToPropsType = {
     addPost: (newPostText:string) => void

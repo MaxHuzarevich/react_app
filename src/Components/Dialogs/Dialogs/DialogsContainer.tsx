@@ -1,18 +1,21 @@
 import React, {ChangeEvent} from "react";
 import {addNewMessageTextAC, InitialDialogsStateType, updateNewMessageTextAC} from "../../State/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
-import {StateType} from "../../State/State";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
-export type mapStateToPropsType = {
+export type StateType = {
+    dialogsPage: InitialDialogsStateType,
+}
+
+type mapStateToPropsType = {
     dialogs: InitialDialogsStateType
     newMessageBody: string
 }
 
-export type mapDispatchToPropsType = {
+type mapDispatchToPropsType = {
     onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
-    onSendMessageClick: (newMessageBody:string) => void
+    onSendMessageClick: (newMessageBody: string) => void
 }
 
 let mapStateToProps = (state: StateType): mapStateToPropsType => {

@@ -1,5 +1,4 @@
-import {actionType} from "./State";
-import {Simulate} from "react-dom/test-utils";
+import {actionTypes} from "./redux-store";
 
 
 export type dialogType = {
@@ -53,10 +52,10 @@ let initialState: InitialDialogsStateType = {
         {id: 4, message: 'What!'},
         {id: 5, message: 'Ooo!'},
     ],
-    newMessageBody: 'Enter your message'
+    newMessageBody: 'Enter your message...'
 }
 
-export const dialogsReducer = (state = initialState, action: actionType) => {
+export const dialogsReducer = (state = initialState, action: actionTypes) => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_TEXT:
             return {

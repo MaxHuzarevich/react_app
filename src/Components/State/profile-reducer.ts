@@ -1,4 +1,16 @@
-import {actionType, postType} from "./State";
+import {actionTypes} from "./redux-store";
+
+export type postType = {
+    id: number
+    message: string
+    like: number
+    dislike: number
+}
+
+export type initialStateProfileType = {
+    posts: Array<postType>
+    newPostText: string
+}
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
@@ -20,7 +32,7 @@ export const updateNewPostTextAC = (newText: string) => {
 export type addPostActionType = ReturnType<typeof addPostAC>     //возвращаемый тип
 export type updateNewPostText = ReturnType<typeof updateNewPostTextAC>
 
-let initialState = {
+let initialState:initialStateProfileType = {
     posts: [
         {id: 1, message: 'Hi!', like: 1, dislike: 3},
         {id: 2, message: 'Hello!', like: 2, dislike: 1},
@@ -31,7 +43,7 @@ let initialState = {
     newPostText: 'Enter your text...'
 }
 
-export const profileReducer = (state = initialState, action: actionType) => {
+export const profileReducer = (state = initialState, action: actionTypes) => {
     switch (action.type) {
         case ADD_POST: {
             let NewMessage: postType = {
