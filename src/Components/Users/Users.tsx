@@ -1,5 +1,7 @@
 import React from "react";
 import {initialUsersStateType, userTypeForUserReducer} from "../State/users-reducer";
+import axios from "axios";
+import UserPhoto from '../../assets/images/istockphoto.jpg'
 
 type UsersType = {
     follow: (userID: number) => void
@@ -9,67 +11,37 @@ type UsersType = {
 }
 
 export const Users = ({users, setUser, follow, unfollow}: UsersType) => {
-    if (users.users.length === 0) {
-        setUser([
-            {
-                userID: 1,
-                photoURL: 'https://ionicframework.com/docs/img/demos/avatar.svg',
-                followed: true,
-                fullName: 'Pitt',
-                status: 'I like you',
-                location: {city: 'Minsk', country: 'Belarus'}
-            },
-            {
-                userID: 2,
-                photoURL: 'https://ionicframework.com/docs/img/demos/avatar.svg',
-                followed: false,
-                fullName: 'Bob',
-                status: 'I am senior mechanic',
-                location: {city: 'London', country: 'England'}
-            },
-            {
-                userID: 3,
-                photoURL: 'https://ionicframework.com/docs/img/demos/avatar.svg',
-                followed: true,
-                fullName: 'Cris',
-                status: 'I love bowling',
-                location: {city: 'Mexico', country: 'Mexico'}
-            },
-            {
-                userID: 4,
-                photoURL: 'https://ionicframework.com/docs/img/demos/avatar.svg',
-                followed: false,
-                fullName: 'John',
-                status: 'Just do it',
-                location: {city: 'Brasilia', country: 'Brazil'}
-            },
-        ])
-    }
+    if(users.users.length === 0){
+     axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+        setUser(response.data.items)
+    })}
+
     return (
         <div>
             {
-                users.users.map(u => <div key={u.userID} style={{margin:'5px'}}>
+
+                users.users.map(u => <div key={u.id} style={{margin:'5px'}}>
                     <div>
-                        <img src={u.photoURL} style={{width: '10%'}} alt={'avatar'}/>
+                        <img src={u.photos.small !== null ? u.photos.small : UserPhoto} style={{width: '10%'}} alt={'avatar'}/>
                     </div>
                     <div>
                         {u.followed
                             ?
                             <button onClick={() => {
-                                unfollow(u.userID)
+                                unfollow(u.id)
                             }}>Unfollow</button>
                             :
                             <button onClick={() => {
-                                follow(u.userID)
+                                follow(u.id)
                             }}>Follow</button>
                         }
                     </div>
                     <div>
-                        <h3>fullName: {u.fullName}</h3>
+                        <h3>name: {u.name}</h3>
                         <span>{u.status}</span>
                         <ul>
-                            <li>{u.location.city}</li>
-                            <li>{u.location.country}</li>
+                            <li>{'u.location.city'}</li>
+                            <li>{'u.location.country'}</li>
                         </ul>
                     </div>
                 </div>)

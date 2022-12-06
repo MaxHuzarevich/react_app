@@ -33,10 +33,13 @@ export type initialUsersStateType = {
     users: Array<userTypeForUserReducer>
 }
 export type userTypeForUserReducer = {
-    userID: number
-    photoURL: string
+    id: number
+    photos: {
+        small:''
+        large:''
+    }
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: {
         city: string
@@ -53,12 +56,12 @@ export const usersReducer = (state = initialState, action: actionTypes) => {
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => u.userID === action.userID ? {...u, followed: true} : u)
+                users: state.users.map(u => u.id === action.userID ? {...u, followed: true} : u)
             }
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(u => u.userID === action.userID ? {...u, followed: false} : u)
+                users: state.users.map(u => u.id === action.userID ? {...u, followed: false} : u)
             }
         case SET_USERS:
             return {
