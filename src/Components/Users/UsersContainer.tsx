@@ -1,8 +1,8 @@
 import React from "react";
-import {Users} from "./Users";
 import {Dispatch} from "redux";
 import {followAC, initialUsersStateType, setUsersAC, unfollowAC, userTypeForUserReducer} from "../State/users-reducer";
 import {connect} from "react-redux";
+import {Users_Class_Component} from "./Users_Class_Component";
 
 type StateType = {
     usersPage: initialUsersStateType
@@ -32,4 +32,4 @@ let MapDispatchToProps = (dispatch: Dispatch):MapDispatchToPropsType => {
     }
 }
 
-export const SuperUsersContainer = connect(MapStateToProps,MapDispatchToProps)(Users)
+export const SuperUsersContainer = connect(MapStateToProps,MapDispatchToProps)(Users_Class_Component)
