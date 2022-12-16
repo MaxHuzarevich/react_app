@@ -4,7 +4,7 @@ import {addNewMessageText, dialogsReducer, updateNewMessageText} from "./dialogs
 import {
     followActionType,
     setCurrentPageActionType, setTotalUserCountActionType,
-    setUsersActionType,
+    setUsersActionType, toggleIsFetchingActionType,
     unfollowActionType,
     usersReducer
 } from "./users-reducer";
@@ -13,7 +13,8 @@ export type actionTypes =
     addPostActionType | updateNewPostText |
     updateNewMessageText | addNewMessageText |
     followActionType | unfollowActionType |
-    setUsersActionType | setCurrentPageActionType | setTotalUserCountActionType
+    setUsersActionType | setCurrentPageActionType |
+    setTotalUserCountActionType | toggleIsFetchingActionType
 
 
 let reducers = combineReducers({
