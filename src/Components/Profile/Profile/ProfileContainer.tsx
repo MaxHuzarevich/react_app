@@ -47,6 +47,7 @@ class Profile_Container extends React.Component<CommonPropsType, any> {
 
     render() {
         return <Profile
+            {...this.props}
             profile={this.props.profile}
             setUserProfile={this.props.setUserProfile}
         />

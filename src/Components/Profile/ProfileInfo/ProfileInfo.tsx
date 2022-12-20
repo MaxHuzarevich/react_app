@@ -4,7 +4,7 @@ import {ProfType} from "../Profile/ProfileContainer";
 export const ProfileInfo = ({profile}: ProfType) => {
     return (
         <div>
-            {/*<img src={profile.photos.large} alt={'photo large'}/>*/}
+            <img src={profile.photos.large} alt={'photo large'}/>
             <div>
                 <ul>
                     <li>{profile.fullName}</li>
