@@ -2,6 +2,8 @@ import React from "react";
 import styles from "./Users_Class_Component.module.css";
 import UserPhoto from "../../assets/images/istockphoto.jpg";
 import {initialUsersStateType} from "../State/users-reducer";
+import {NavLink} from "react-router-dom";
+
 
 type UsersType = {
     follow: (userID: number) => void
@@ -10,7 +12,7 @@ type UsersType = {
     onPageChanged: (p: number) => void
 }
 
-export const Users:React.FC<UsersType> = props => {
+export const Users: React.FC<UsersType> = props => {
 
     const {users, onPageChanged, follow, unfollow} = props
 
@@ -24,7 +26,7 @@ export const Users:React.FC<UsersType> = props => {
     return (
         <div>
             <div>
-                {pages.map((p,index) => {
+                {pages.map((p, index) => {
                     return <span
                         key={index}
                         onClick={() => {
@@ -38,8 +40,10 @@ export const Users:React.FC<UsersType> = props => {
             {
                 users.users.map(u => <div key={u.id} style={{margin: '5px'}}>
                     <div>
-                        <img src={u.photos.small !== null ? u.photos.small : UserPhoto} style={{width: '50px'}}
-                             alt={'avatar'}/>
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={u.photos.small !== null ? u.photos.small : UserPhoto} style={{width: '50px'}}
+                                 alt={'avatar'}/>
+                        </NavLink>
                     </div>
                     <div>
                         {u.followed

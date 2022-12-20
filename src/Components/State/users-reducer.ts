@@ -7,54 +7,54 @@ export const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 export const SET_TOTAL_USER_COUNT = 'SET-TOTAL-USER-COUNT'
 export const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 
-export const followAC = (userID: number) => {
+export const follow = (userID: number) => {
     return {
         type: FOLLOW,
         userID
     } as const
 }
 
-export const unfollowAC = (userID: number) => {
+export const unfollow = (userID: number) => {
     return {
         type: UNFOLLOW,
         userID
     } as const                        //воспринимай как константу
 }
 
-export const setUsersAC = (users: Array<userTypeForUserReducer>) => {
+export const setUsers = (users: Array<userTypeForUserReducer>) => {
     return {
         type: SET_USERS,
         users
     } as const
 }
 
-export const setCurrentPageAC = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: SET_CURRENT_PAGE,
         currentPage
     } as const
 }
 
-export const setTotalUserCountAC = (totalCountUser: number) => {
+export const setTotalUserCount = (totalCountUser: number) => {
     return {
         type: SET_TOTAL_USER_COUNT,
         count: totalCountUser
     } as const
 }
 
-export const toggleIsFetchingAC = (isFetching: boolean) => {
+export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: TOGGLE_IS_FETCHING,
         isFetching
     } as const
 }
 
-export type followActionType = ReturnType<typeof followAC>     //возвращаемый тип
-export type unfollowActionType = ReturnType<typeof unfollowAC>
-export type setUsersActionType = ReturnType<typeof setUsersAC>
-export type setCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
-export type setTotalUserCountActionType = ReturnType<typeof setTotalUserCountAC>
-export type toggleIsFetchingActionType = ReturnType<typeof toggleIsFetchingAC>
+export type followActionType = ReturnType<typeof follow>     //возвращаемый тип
+export type unfollowActionType = ReturnType<typeof unfollow>
+export type setUsersActionType = ReturnType<typeof setUsers>
+export type setCurrentPageActionType = ReturnType<typeof setCurrentPage>
+export type setTotalUserCountActionType = ReturnType<typeof setTotalUserCount>
+export type toggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>
 
 export type initialUsersStateType = {
     users: Array<userTypeForUserReducer>,

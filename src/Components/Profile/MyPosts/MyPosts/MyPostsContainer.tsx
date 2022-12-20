@@ -13,7 +13,7 @@ export type mapDispatchToPropsType = {
     updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
-export type mapStateToPropsType = {
+ type mapStateToPropsType = {
     posts: postType[]
     newPostText: string
 }
