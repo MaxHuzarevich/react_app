@@ -8,19 +8,24 @@ import {
     unfollowActionType,
     usersReducer
 } from "./users-reducer";
+import {AuthReducer, setAuthUSerDataType} from "./auth-reducer";
 
 export type actionTypes =
     addPostActionType | updateNewPostTextType |
     updateNewMessageText | addNewMessageText |
     followActionType | unfollowActionType |
     setUsersActionType | setCurrentPageActionType |
-    setTotalUserCountActionType | toggleIsFetchingActionType | setUserProfileType
+    setTotalUserCountActionType | toggleIsFetchingActionType
+    | setUserProfileType | setAuthUSerDataType
 
 
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: AuthReducer
 })
+
+export type AppStateType = ReturnType<typeof reducers>
 
 export let store = createStore(reducers)

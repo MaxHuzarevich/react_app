@@ -7,3 +7,16 @@
 .header img {
     width: 40px;
 }
+
+.loginBlock {
+    margin-top: -2%;
+    float: right;
+}
+
+.loginBlock a {
+    color: white;
+    text-decoration: none;
+}
+.loginBlock a:hover {
+    color: lightgreen;
+}
