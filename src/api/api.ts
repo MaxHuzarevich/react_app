@@ -13,6 +13,12 @@ export const usersAPI = {
             `/users?page=${currentPage}&count=${pageSize}`,
         ).then(resp => {
             return resp.data
-        })
+        }).catch(error => console.warn(error))
+    },
+    follow(userID:number){
+        return instance.post(`https://social-network.samuraijs.com/api/1.0/follow/${userID}`)
+    },
+    unfollow(userID:number){
+        return instance.delete(`https://social-network.samuraijs.com/api/1.0/follow/${userID}`)
     }
 }

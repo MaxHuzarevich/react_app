@@ -1,4 +1,5 @@
 import {actionTypes} from "./redux-store";
+import {usersAPI} from "../../api/api";
 
 export const FOLLOW = 'FOLLOW'
 export const UNFOLLOW = 'UNFOLLOW'
@@ -8,14 +9,14 @@ export const SET_TOTAL_USER_COUNT = 'SET-TOTAL-USER-COUNT'
 export const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 export const TOGGLE_IS_FOLLOWING_PROCESS = 'TOGGLE-IS-FOLLOWING-PROCESS'
 
-export const follow = (userID: number) => {
+export const followSuccess = (userID: number) => {
     return {
         type: FOLLOW,
         userID
     } as const
 }
 
-export const unfollow = (userID: number) => {
+export const unfollowSuccess = (userID: number) => {
     return {
         type: UNFOLLOW,
         userID
@@ -58,8 +59,49 @@ export const toggleFollowingProgress = (isFetching: boolean, userID: number) => 
     } as const
 }
 
-export type followActionType = ReturnType<typeof follow>     //возвращаемый тип
-export type unfollowActionType = ReturnType<typeof unfollow>
+export const getUsers = (currentPage: number, pageSize: number) => {
+
+    return (dispatch: any) => {
+
+        dispatch(toggleIsFetching(true))
+
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUserCount(data.totalCount))
+        })
+    }
+}
+
+export const follow = (userID: number) => {
+    return (dispatch: any) => {
+        dispatch(toggleFollowingProgress(true, userID))
+        usersAPI.follow(userID)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(followSuccess(userID))
+                }
+                dispatch(toggleFollowingProgress(false, userID))
+            })
+    }
+}
+
+
+export const unfollow = (userID: number) => {
+    return (dispatch: any) => {
+        dispatch(toggleFollowingProgress(true, userID))
+        usersAPI.unfollow(userID)
+            .then(response => {
+                if (response.data.resultCode === 0) {
+                    dispatch(unfollowSuccess(userID))
+                }
+                dispatch(toggleFollowingProgress(false, userID))
+            })
+    }
+}
+
+export type followActionType = ReturnType<typeof followSuccess>     //возвращаемый тип
+export type unfollowActionType = ReturnType<typeof unfollowSuccess>
 export type setUsersActionType = ReturnType<typeof setUsers>
 export type setCurrentPageActionType = ReturnType<typeof setCurrentPage>
 export type setTotalUserCountActionType = ReturnType<typeof setTotalUserCount>
