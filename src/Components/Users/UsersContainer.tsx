@@ -12,6 +12,7 @@ import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
 import {AppStateType} from "../State/redux-store";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 type UsersType = {
     follow: (userID: number) => void
@@ -75,7 +76,7 @@ let MapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export const SuperUsersContainer = withAuthRedirect(connect(MapStateToProps, {
+export const SuperUsersContainer = compose<React.ComponentType>(withAuthRedirect, connect(MapStateToProps, {
     follow, unfollow, setCurrentPage,
     toggleFollowingProgress, getUsers
-})(UsersContainer))
+}))(UsersContainer)
