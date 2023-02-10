@@ -9,11 +9,12 @@ import {SuperDialogsContainer} from "./Components/Dialogs/Dialogs/DialogsContain
 import {SuperUsersContainer} from './Components/Users/UsersContainer';
 import Profile_Container from "./Components/Profile/Profile/ProfileContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
+import {LoginPage} from "./Components/LoginPage/LoginPage";
 
 function App() {
     return (
         <div className='app-wrapper'>
-            <HeaderContainer/>
+            <HeaderContainer />
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
@@ -25,6 +26,8 @@ function App() {
                 <Route path='/news' component={Music}/>
                 <Route path='/music' component={News}/>
                 <Route path='/settings' component={Settings}/>
+                <Route path={'/login'}
+                       render={() => <LoginPage/>}/>
             </div>
         </div>
     );

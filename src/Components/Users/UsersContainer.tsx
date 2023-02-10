@@ -11,17 +11,14 @@ import {connect} from "react-redux";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
 import {AppStateType} from "../State/redux-store";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 type UsersType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
-    // setUsers: (users: Array<userTypeForUserReducer>) => void
     users: initialUsersStateType
     setCurrentPage: (currentPage: number) => void
-    // setTotalUserCount: (totalCountUser: number) => void
     isFetching: boolean
-    // toggleIsFetching: (isFetching: boolean) => void
-    // toggleFollowingProgress: (isFetching: boolean, userID: number) => void
     followingInProgress: []
     getUsers: (currentPage: number, pageSize: number) => void
     currentPage: number
@@ -52,7 +49,6 @@ export class UsersContainer extends React.Component<UsersType, any> {
                     unfollow={this.props.unfollow}
                     follow={this.props.follow}
                     onPageChanged={this.onPageChanged}
-                    // toggleFollowingProgress={this.props.toggleFollowingProgress}
                 />
             </>
         )
@@ -79,7 +75,7 @@ let MapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export const SuperUsersContainer = connect(MapStateToProps, {
+export const SuperUsersContainer = withAuthRedirect(connect(MapStateToProps, {
     follow, unfollow, setCurrentPage,
     toggleFollowingProgress, getUsers
-})(UsersContainer)
+})(UsersContainer))

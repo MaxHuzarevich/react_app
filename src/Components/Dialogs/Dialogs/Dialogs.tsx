@@ -4,16 +4,17 @@ import {DialogItem} from "../DialogItem/DialogItem";
 import {Message} from "../Message/Message";
 import {store} from "../../State/redux-store";
 
-type DialogsType = {
-    onSendMessageClick: (newMessageBody:string) => void
+ type DialogsType = {
+    onSendMessageClick: (newMessageBody: string) => void
     onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
     newMessageBody: string
+    isAuth: boolean
 }
 
 export const Dialogs = ({
                             onNewMessageChange,
                             onSendMessageClick,
-                            newMessageBody
+                            newMessageBody,
                         }: DialogsType) => {
 
     const dialogsData = store.getState().dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
@@ -40,7 +41,7 @@ export const Dialogs = ({
                     />
                 </div>
                 <div>
-                    <button onClick={onSendMessage}>add</button>
+                    <button onClick={onSendMessage}>ADD</button>
                 </div>
             </div>
         </div>

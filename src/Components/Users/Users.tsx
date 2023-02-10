@@ -10,7 +10,6 @@ type UsersType = {
     unfollow: (userID: number) => void
     users: initialUsersStateType
     onPageChanged: (p: number) => void
-    // toggleFollowingProgress: (isFetching: boolean, userID: number) => void
     followingInProgress: []
 }
 

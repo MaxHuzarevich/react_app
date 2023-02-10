@@ -1,4 +1,5 @@
 import {actionTypes} from "./redux-store";
+import {usersAPI} from "../../api/api";
 
 export type postType = {
     id: number
@@ -31,11 +32,20 @@ export const updateNewPostTextAC = (newText: string) => {
     } as const                        //воспринимай как константу
 }
 
-export const setUserProfile = (profile:ProfileType) => {
+export const setUserProfile = (profile: ProfileType) => {
     return {
         type: SET_USER_PROFILE,
         profile
     } as const
+}
+
+export const getUserProfile = (userId:string) => {
+    return (dispatch: any) => {
+        usersAPI.getProfile(userId)
+            .then(response => {
+                dispatch(setUserProfile(response.data));
+            })
+    }
 }
 
 export type addPostActionType = ReturnType<typeof addPostAC>     //возвращаемый тип

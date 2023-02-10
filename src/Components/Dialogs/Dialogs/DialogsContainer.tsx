@@ -3,14 +3,13 @@ import {addNewMessageTextAC, InitialDialogsStateType, updateNewMessageTextAC} fr
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-
-export type StateType = {
-    dialogsPage: InitialDialogsStateType,
-}
+import {AppStateType} from "../../State/redux-store";
+import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 type mapStateToPropsType = {
     dialogs: InitialDialogsStateType
     newMessageBody: string
+    isAuth: boolean
 }
 
 type mapDispatchToPropsType = {
@@ -18,10 +17,11 @@ type mapDispatchToPropsType = {
     onSendMessageClick: (newMessageBody: string) => void
 }
 
-let mapStateToProps = (state: StateType): mapStateToPropsType => {
+let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         dialogs: state.dialogsPage,
-        newMessageBody: state.dialogsPage.newMessageBody
+        newMessageBody: state.dialogsPage.newMessageBody,
+        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
@@ -34,4 +34,7 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         }
     }
 }
-export const SuperDialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
+
+let AuthRedirectComponent = withAuthRedirect(Dialogs)
+
+export const SuperDialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent)
