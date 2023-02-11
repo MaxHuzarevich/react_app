@@ -38,6 +38,7 @@ export const Users: React.FC<UsersType> = props => {
                         </span>
                 })}
             </div>
+            <div>
             {
                 users.users.map(u => <div key={u.id} style={{margin: '5px'}}>
                     <div>
@@ -71,7 +72,7 @@ export const Users: React.FC<UsersType> = props => {
                         </ul>
                     </div>
                 </div>)
-            }
+            }</div>
         </div>
     )
 }
