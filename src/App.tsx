@@ -7,7 +7,7 @@ import {News} from "./Components/News/News";
 import {Settings} from "./Components/Settings/Setings";
 import {SuperDialogsContainer} from "./Components/Dialogs/Dialogs/DialogsContainer";
 import {SuperUsersContainer} from './Components/Users/UsersContainer';
-import Profile_Container from "./Components/Profile/Profile/ProfileContainer";
+import Profile_Container from "./Components/Profile/Profile/Profile_Container";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import {LoginPage} from "./Components/LoginPage/LoginPage";
 

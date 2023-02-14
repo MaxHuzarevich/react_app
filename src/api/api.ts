@@ -7,6 +7,7 @@ const instance = axios.create({
         'API-KEY': '57a6b8c8-97c1-40c0-bb62-c0e1174be241'
     }
 })
+
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
         return instance.get(
@@ -22,9 +23,23 @@ export const usersAPI = {
         return instance.delete(`/follow/${userID}`)
     },
     getProfile(userID:string){
-        return instance.get(`/profile/` + userID)
+        console.warn('Obsolete method. Please use profile api object.')
+        return profileAPI.getProfile(userID)
     }
 }
+
+export const profileAPI = {
+    getProfile(userID:string){
+        return instance.get(`/profile/` + userID)
+    },
+    getStatus(userID:string){
+        return instance.get(`profile/status/` + userID)
+    },
+    updateStatus(status:string){
+        return instance.put(`profile/status/`, {status:status})
+    }
+}
+
 export const authAPI = {
     me(){
         return instance.get(

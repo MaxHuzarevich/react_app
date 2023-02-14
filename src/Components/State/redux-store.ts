@@ -1,5 +1,10 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {addPostActionType, profileReducer, setUserProfileType, updateNewPostTextType} from "./profile-reducer";
+import {
+    addPostActionType,
+    profileReducer, setStatusType,
+    setUserProfileType,
+    updateNewPostTextType
+} from "./profile-reducer";
 import {addNewMessageText, dialogsReducer, updateNewMessageText} from "./dialogs-reducer";
 import {
     followActionType,
@@ -18,16 +23,16 @@ export type actionTypes =
     setUsersActionType | setCurrentPageActionType |
     setTotalUserCountActionType | toggleIsFetchingActionType
     | setUserProfileType | setAuthUSerDataType
-    | toggleFollowingProgressType
+    | toggleFollowingProgressType | setStatusType
 
 
-let reducers = combineReducers({
+let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     auth: AuthReducer
 })
 
-export type AppStateType = ReturnType<typeof reducers>
+export type AppStateType = ReturnType<typeof rootReducer>
 
-export let store = createStore(reducers, applyMiddleware(thunkMiddleware))
+export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))

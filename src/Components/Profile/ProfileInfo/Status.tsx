@@ -2,9 +2,10 @@ import React, {ChangeEvent, useState} from "react";
 
 type ProfileStatusType = {
     status: string
+    updateStatusProfile: (status:string) => void
 }
 
-export const ProfileStatus = ({status}: ProfileStatusType) => {
+export const ProfileStatus = ({status, updateStatusProfile}: ProfileStatusType) => {
 
     const [title, setTitle] = useState(status)
     const [editMode, setEditMode] = useState(false)
@@ -13,6 +14,7 @@ export const ProfileStatus = ({status}: ProfileStatusType) => {
     const onEditMode = () => setEditMode(true)
     const offEditMode = () => {
         setEditMode(false)
+        updateStatusProfile(title)
     }
 
     return <div>
@@ -29,7 +31,7 @@ export const ProfileStatus = ({status}: ProfileStatusType) => {
                 </div>
                 :
                 <div onDoubleClick={onEditMode}>
-                    <span>{title}</span>
+                    <span>{status}</span>
                 </div>
 
         }

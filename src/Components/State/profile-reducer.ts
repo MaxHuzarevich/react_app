@@ -1,5 +1,6 @@
 import {actionTypes} from "./redux-store";
-import {usersAPI} from "../../api/api";
+import {profileAPI, usersAPI} from "../../api/api";
+import {Dispatch} from "redux";
 
 export type postType = {
     id: number
@@ -12,11 +13,13 @@ export type initialStateProfileType = {
     posts: Array<postType>
     newPostText: string
     profile: ProfileType
+    status: string
 }
 
 export const ADD_POST = 'ADD-POST'
 export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 export const SET_USER_PROFILE = 'SET-USER-PROFILE'
+export const SET_STATUS = 'SET-STATUS'
 
 export const addPostAC = (newPost: string) => {
     return {
@@ -39,11 +42,38 @@ export const setUserProfile = (profile: ProfileType) => {
     } as const
 }
 
-export const getUserProfile = (userId:string) => {
-    return (dispatch: any) => {
+export const setStatus = (status: string) => {
+    return {
+        type: SET_STATUS,
+        status
+    } as const
+}
+
+export const getUserProfile = (userId: string) => {
+    return (dispatch: Dispatch<actionTypes>) => {
         usersAPI.getProfile(userId)
             .then(response => {
                 dispatch(setUserProfile(response.data));
+            })
+            .catch(error => console.log(error))
+    }
+}
+export const getStatus = (userID: string) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.getStatus(userID)
+            .then(res => {
+                dispatch(setStatus(res.data))
+            })
+    }
+}
+
+export const updateStatusProfile = (status: string) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.updateStatus(status)
+            .then(res => {
+                if (res.data.resultCode === 0) {
+                    dispatch(setStatus(status))
+                }
             })
     }
 }
@@ -51,6 +81,7 @@ export const getUserProfile = (userId:string) => {
 export type addPostActionType = ReturnType<typeof addPostAC>     //возвращаемый тип
 export type updateNewPostTextType = ReturnType<typeof updateNewPostTextAC>
 export type setUserProfileType = ReturnType<typeof setUserProfile>
+export type setStatusType = ReturnType<typeof setStatus>
 
 export type ProfileType = {
     userId: number
@@ -82,7 +113,8 @@ let initialState: initialStateProfileType = {
         {id: 5, message: 'What is your name?', like: 2, dislike: 0},
     ],
     newPostText: 'Enter your text...',
-    profile: {} as ProfileType
+    profile: {} as ProfileType,
+    status: ''
 }
 
 export const profileReducer = (state = initialState, action: actionTypes) => {
@@ -110,6 +142,11 @@ export const profileReducer = (state = initialState, action: actionTypes) => {
             return {
                 ...state,
                 profile: action.profile
+            }
+        case SET_STATUS:
+            return {
+                ...state,
+                status: action.status
             }
     }
     return state
