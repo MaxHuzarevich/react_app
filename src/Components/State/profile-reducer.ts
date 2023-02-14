@@ -1,5 +1,5 @@
 import {actionTypes} from "./redux-store";
-import {profileAPI, usersAPI} from "../../api/api";
+import {profileAPI} from "../../api/api";
 import {Dispatch} from "redux";
 
 export type postType = {
@@ -51,7 +51,7 @@ export const setStatus = (status: string) => {
 
 export const getUserProfile = (userId: string) => {
     return (dispatch: Dispatch<actionTypes>) => {
-        usersAPI.getProfile(userId)
+        profileAPI.getProfile(userId)
             .then(response => {
                 dispatch(setUserProfile(response.data));
             })

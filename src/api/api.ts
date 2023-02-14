@@ -16,32 +16,28 @@ export const usersAPI = {
             return resp.data
         }).catch(error => console.warn(error))
     },
-    follow(userID:number){
+    follow(userID: number) {
         return instance.post(`/follow/${userID}`)
     },
-    unfollow(userID:number){
+    unfollow(userID: number) {
         return instance.delete(`/follow/${userID}`)
-    },
-    getProfile(userID:string){
-        console.warn('Obsolete method. Please use profile api object.')
-        return profileAPI.getProfile(userID)
     }
 }
 
 export const profileAPI = {
-    getProfile(userID:string){
+    getProfile(userID: string) {
         return instance.get(`/profile/` + userID)
     },
-    getStatus(userID:string){
+    getStatus(userID: string) {
         return instance.get(`profile/status/` + userID)
     },
-    updateStatus(status:string){
-        return instance.put(`profile/status/`, {status:status})
+    updateStatus(status: string) {
+        return instance.put(`profile/status/`, {status: status})
     }
 }
 
 export const authAPI = {
-    me(){
+    me() {
         return instance.get(
             `/auth/me`)
     }

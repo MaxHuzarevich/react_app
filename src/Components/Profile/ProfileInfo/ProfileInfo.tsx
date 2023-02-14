@@ -9,7 +9,7 @@ export const ProfileInfo = ({profile, status, updateStatusProfile}: ProfType) =>
         <div style={{margin: '25px'}}>
             <div style={{
                 boxShadow: '5px 5px 5px rgb(65 105 225)',
-                width: '350px',
+                width: '350px', 
                 borderRadius: '5px',
                 border: '2px solid white'
             }}>

@@ -15,6 +15,7 @@ import {
 } from "./users-reducer";
 import {AuthReducer, setAuthUSerDataType} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk'
+import { reducer as formReducer } from 'redux-form'
 
 export type actionTypes =
     addPostActionType | updateNewPostTextType |
@@ -30,7 +31,8 @@ let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
-    auth: AuthReducer
+    auth: AuthReducer,
+    form: formReducer
 })
 
 export type AppStateType = ReturnType<typeof rootReducer>
