@@ -1,25 +1,22 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {
-    addPostActionType,
-    profileReducer, setStatusType,
-    setUserProfileType,
-    updateNewPostTextType
-} from "./profile-reducer";
-import {addNewMessageText, dialogsReducer, updateNewMessageText} from "./dialogs-reducer";
+import {addPostActionType, profileReducer, setStatusType, setUserProfileType} from "./profile-reducer";
+import {addNewMessageText, dialogsReducer} from "./dialogs-reducer";
 import {
     followActionType,
-    setCurrentPageActionType, setTotalUserCountActionType,
-    setUsersActionType, toggleFollowingProgressType, toggleIsFetchingActionType,
+    setCurrentPageActionType,
+    setTotalUserCountActionType,
+    setUsersActionType,
+    toggleFollowingProgressType,
+    toggleIsFetchingActionType,
     unfollowActionType,
     usersReducer
 } from "./users-reducer";
 import {AuthReducer, setAuthUSerDataType} from "./auth-reducer";
 import thunkMiddleware from 'redux-thunk'
-import { reducer as formReducer } from 'redux-form'
+import {reducer as formReducer} from 'redux-form'
 
 export type actionTypes =
-    addPostActionType | updateNewPostTextType |
-    updateNewMessageText | addNewMessageText |
+    addPostActionType | addNewMessageText |
     followActionType | unfollowActionType |
     setUsersActionType | setCurrentPageActionType |
     setTotalUserCountActionType | toggleIsFetchingActionType

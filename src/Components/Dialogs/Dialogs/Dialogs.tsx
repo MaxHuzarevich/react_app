@@ -1,31 +1,22 @@
-import React, {ChangeEvent} from "react";
+import React from "react";
 import classes from './Dialogs.module.css'
 import {DialogItem} from "../DialogItem/DialogItem";
 import {Message} from "../Message/Message";
 import {store} from "../../State/redux-store";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
- type DialogsType = {
-    onSendMessageClick: (newMessageBody: string) => void
-    onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
-    newMessageBody: string
-    isAuth: boolean
+type DialogsType = {
+    onSendMessageClick: (value: string) => void
 }
 
-export const Dialogs = ({
-                            onNewMessageChange,
-                            onSendMessageClick,
-                            newMessageBody,
-                        }: DialogsType) => {
+export const Dialogs = ({onSendMessageClick}: DialogsType) => {
 
-    const dialogsData = store.getState().dialogsPage.dialogs.map(d => <DialogItem name={d.name} id={d.id} key={d.id}/>)
-    const messagesData = store.getState().dialogsPage.messages.map(m => <Message message={m.message} key={m.id}/>)
+    const dialogsData =
+        store.getState().dialogsPage.names.map((d: { name: string; id: React.Key | null | undefined; }) => <DialogItem name={d.name} key={d.id}/>)
+    const messagesData =
+        store.getState().dialogsPage.messages.map((m: { message: string; id: React.Key | null | undefined; }) => <Message message={m.message} key={m.id}/>)
 
-    const onSendMessage = () => {
-        onSendMessageClick(newMessageBody)
-    }
-    const newMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        onNewMessageChange(e)
-    }
+    const addNewMessage = (formData: formDataDialogType) => onSendMessageClick(formData.message)
 
     return (
         <div className={classes.dialogs}>
@@ -34,16 +25,24 @@ export const Dialogs = ({
             </div>
             <div className={classes.messages}>
                 {messagesData}
-                <div>
-                    <textarea
-                        value={newMessageBody}
-                        onChange={newMessageChange}
-                    />
-                </div>
-                <div>
-                    <button onClick={onSendMessage}>ADD</button>
-                </div>
+                <AddMessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
     )
 }
+
+export type formDataDialogType = {
+    message: string
+}
+export const AddMessageForm: React.FC<InjectedFormProps<formDataDialogType>>
+    = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+
+            <Field component='textarea' name='message' placeholder='Enter your message...'/>
+            <button>send</button>
+        </form>
+    )
+}
+
+const AddMessageFormRedux = reduxForm<formDataDialogType>({form: 'dialogAddMessageForm'})(AddMessageForm)

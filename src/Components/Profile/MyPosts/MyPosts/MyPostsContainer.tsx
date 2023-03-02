@@ -1,5 +1,5 @@
-import React, {ChangeEvent} from "react";
-import {addPostAC, initialStateProfileType, postType, updateNewPostTextAC} from "../../../State/profile-reducer";
+import React from "react";
+import {addPostAC, initialStateProfileType, postType} from "../../../State/profile-reducer";
 import {MyPosts} from "./MyPosts";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
@@ -10,12 +10,12 @@ export type StateType = {
 
 export type mapDispatchToPropsType = {
     addPost: (newPostText:string) => void
-    updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>) => void
+    // updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
  type mapStateToPropsType = {
     posts: postType[]
-    newPostText: string
+    // newPostText: string
 }
 
 export type MyPostsType = mapStateToPropsType & mapDispatchToPropsType
@@ -23,7 +23,7 @@ export type MyPostsType = mapStateToPropsType & mapDispatchToPropsType
 export const mapStateToProps = (state: StateType): mapStateToPropsType => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        // newPostText: state.profilePage.newPostText
     }
 }
 
@@ -33,9 +33,9 @@ export const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType =
         addPost: (newPostText) => {
             dispatch(addPostAC(newPostText))
         },
-        updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>) => {
-            dispatch(updateNewPostTextAC(e.currentTarget.value))
-        }
+        // updateNewPostText: (e: ChangeEvent<HTMLTextAreaElement>) => {
+        //     dispatch(updateNewPostTextAC(e.currentTarget.value))
+        // }
     }
 }
 

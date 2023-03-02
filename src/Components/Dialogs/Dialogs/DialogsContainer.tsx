@@ -1,5 +1,5 @@
-import React, {ChangeEvent} from "react";
-import {addNewMessageTextAC, InitialDialogsStateType, updateNewMessageTextAC} from "../../State/dialogs-reducer";
+import React from "react";
+import {addNewMessageTextAC, InitialDialogsStateType} from "../../State/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {compose, Dispatch} from "redux";
@@ -8,28 +8,28 @@ import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 type mapStateToPropsType = {
     dialogs: InitialDialogsStateType
-    newMessageBody: string
+    // newMessageBody: string
     isAuth: boolean
 }
 type mapDispatchToPropsType = {
-    onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
-    onSendMessageClick: (newMessageBody: string) => void
+    // onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
+    onSendMessageClick: (value: string) => void
 }
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         dialogs: state.dialogsPage,
-        newMessageBody: state.dialogsPage.newMessageBody,
+        // newMessageBody: state.dialogsPage.newMessageBody,
         isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
-        onSendMessageClick: (newMessageBody) => {
-            dispatch(addNewMessageTextAC(newMessageBody))
-        },
-        onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => {
-            dispatch(updateNewMessageTextAC(e.currentTarget.value))
+        onSendMessageClick: (value) => {
+            dispatch(addNewMessageTextAC(value))
         }
+        // onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => {
+        //     dispatch(updateNewMessageTextAC(e.currentTarget.value))
+        // }
     }
 }
 export const SuperDialogsContainer =

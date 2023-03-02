@@ -53,4 +53,3 @@ class Profile_Container extends React.Component<CommonPropsType, any> {
 
 export default compose<React.ComponentType>(
     connect(MapStateToProps, {getUserProfile, getStatus, updateStatusProfile}), withRouter)(Profile_Container)
-

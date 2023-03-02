@@ -11,13 +11,13 @@ export type postType = {
 
 export type initialStateProfileType = {
     posts: Array<postType>
-    newPostText: string
+    // newPostText: string
     profile: ProfileType
     status: string
 }
 
 export const ADD_POST = 'ADD-POST'
-export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+// export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 export const SET_USER_PROFILE = 'SET-USER-PROFILE'
 export const SET_STATUS = 'SET-STATUS'
 
@@ -28,12 +28,12 @@ export const addPostAC = (newPost: string) => {
     } as const
 }
 
-export const updateNewPostTextAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_POST_TEXT,
-        newText
-    } as const                        //воспринимай как константу
-}
+// export const updateNewPostTextAC = (newText: string) => {
+//     return {
+//         type: UPDATE_NEW_POST_TEXT,
+//         newText
+//     } as const                        //воспринимай как константу
+// }
 
 export const setUserProfile = (profile: ProfileType) => {
     return {
@@ -50,7 +50,7 @@ export const setStatus = (status: string) => {
 }
 
 export const getUserProfile = (userId: string) => {
-    return (dispatch: Dispatch<actionTypes>) => {
+    return (dispatch: Dispatch<setUserProfileType>) => {
         profileAPI.getProfile(userId)
             .then(response => {
                 dispatch(setUserProfile(response.data));
@@ -59,7 +59,7 @@ export const getUserProfile = (userId: string) => {
     }
 }
 export const getStatus = (userID: string) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<setStatusType>) => {
         profileAPI.getStatus(userID)
             .then(res => {
                 dispatch(setStatus(res.data))
@@ -68,7 +68,7 @@ export const getStatus = (userID: string) => {
 }
 
 export const updateStatusProfile = (status: string) => {
-    return (dispatch: Dispatch) => {
+    return (dispatch: Dispatch<setStatusType>) => {
         profileAPI.updateStatus(status)
             .then(res => {
                 if (res.data.resultCode === 0) {
@@ -79,7 +79,7 @@ export const updateStatusProfile = (status: string) => {
 }
 
 export type addPostActionType = ReturnType<typeof addPostAC>     //возвращаемый тип
-export type updateNewPostTextType = ReturnType<typeof updateNewPostTextAC>
+// export type updateNewPostTextType = ReturnType<typeof updateNewPostTextAC>
 export type setUserProfileType = ReturnType<typeof setUserProfile>
 export type setStatusType = ReturnType<typeof setStatus>
 
@@ -112,7 +112,7 @@ let initialState: initialStateProfileType = {
         {id: 4, message: 'I love deep !!!', like: 7, dislike: 1},
         {id: 5, message: 'What is your name?', like: 2, dislike: 0},
     ],
-    newPostText: 'Enter your text...',
+    // newPostText: 'Enter your text...',
     profile: {} as ProfileType,
     status: ''
 }
@@ -121,7 +121,7 @@ export const profileReducer = (state = initialState, action: actionTypes) => {
     switch (action.type) {
         case ADD_POST: {
             let NewMessage: postType = {
-                id: 5,
+                id: Math.random(),
                 message: action.newPost,
                 like: 0,
                 dislike: 0
@@ -132,12 +132,12 @@ export const profileReducer = (state = initialState, action: actionTypes) => {
                 newPostText: ''
             }
         }
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.newText
-            }
-        }
+        // case UPDATE_NEW_POST_TEXT: {
+        //     return {
+        //         ...state,
+        //         newPostText: action.newText
+        //     }
+        // }
         case SET_USER_PROFILE:
             return {
                 ...state,
