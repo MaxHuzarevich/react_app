@@ -9,7 +9,7 @@ import {SuperDialogsContainer} from "./Components/Dialogs/Dialogs/DialogsContain
 import {SuperUsersContainer} from './Components/Users/UsersContainer';
 import Profile_Container from "./Components/Profile/Profile/Profile_Container";
 import HeaderContainer from "./Components/Header/HeaderContainer";
-import {LoginPage} from "./Components/LoginPage/LoginPage";
+import LoginPage from "./Components/LoginPage/LoginPage";
 
 function App() {
     return (

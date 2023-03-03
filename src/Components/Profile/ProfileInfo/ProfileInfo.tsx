@@ -1,6 +1,5 @@
 import React from "react";
 import {ProfType} from "../Profile/Profile_Container";
-import photo from '../../../assets/images/istockphoto.jpg'
 import {ProfileStatus} from "./Status";
 
 export const ProfileInfo = ({profile, status, updateStatusProfile}: ProfType) => {
@@ -13,8 +12,8 @@ export const ProfileInfo = ({profile, status, updateStatusProfile}: ProfType) =>
                 borderRadius: '5px',
                 border: '2px solid white'
             }}>
-                {/*<img style={{borderRadius:'10px',marginLeft:'25px'}} src={profile.photos.large} alt={'photo large'}/>*/}
-                <img style={{width: '300px', margin: '25px', borderRadius: '45px'}} src={photo} alt={'photo'}/>
+                <img style={{borderRadius:'10px',marginLeft:'25px'}} src={profile.photos.large} alt={'photo large'}/>
+                {/*<img style={{width: '300px', margin: '25px', borderRadius: '45px'}} src={photo} alt={'photo'}/>*/}
                 <div style={{margin: '10px', backgroundColor: 'rgb(65 105 225)', borderRadius: '3px'}}>
                     <div style={{
                         margin: '10px', boxShadow: '5px 5px 5px rgb(65 105 225)',
