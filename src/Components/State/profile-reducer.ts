@@ -11,13 +11,11 @@ export type postType = {
 
 export type initialStateProfileType = {
     posts: Array<postType>
-    // newPostText: string
     profile: ProfileType
     status: string
 }
 
 export const ADD_POST = 'ADD-POST'
-// export const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 export const SET_USER_PROFILE = 'SET-USER-PROFILE'
 export const SET_STATUS = 'SET-STATUS'
 
@@ -27,13 +25,6 @@ export const addPostAC = (newPost: string) => {
         newPost
     } as const
 }
-
-// export const updateNewPostTextAC = (newText: string) => {
-//     return {
-//         type: UPDATE_NEW_POST_TEXT,
-//         newText
-//     } as const                        //воспринимай как константу
-// }
 
 export const setUserProfile = (profile: ProfileType) => {
     return {
@@ -79,7 +70,6 @@ export const updateStatusProfile = (status: string) => {
 }
 
 export type addPostActionType = ReturnType<typeof addPostAC>     //возвращаемый тип
-// export type updateNewPostTextType = ReturnType<typeof updateNewPostTextAC>
 export type setUserProfileType = ReturnType<typeof setUserProfile>
 export type setStatusType = ReturnType<typeof setStatus>
 
@@ -112,7 +102,6 @@ let initialState: initialStateProfileType = {
         {id: 4, message: 'I love deep !!!', like: 7, dislike: 1},
         {id: 5, message: 'What is your name?', like: 2, dislike: 0},
     ],
-    // newPostText: 'Enter your text...',
     profile: {} as ProfileType,
     status: ''
 }
@@ -132,12 +121,6 @@ export const profileReducer = (state = initialState, action: actionTypes) => {
                 newPostText: ''
             }
         }
-        // case UPDATE_NEW_POST_TEXT: {
-        //     return {
-        //         ...state,
-        //         newPostText: action.newText
-        //     }
-        // }
         case SET_USER_PROFILE:
             return {
                 ...state,
