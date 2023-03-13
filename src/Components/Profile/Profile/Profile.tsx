@@ -3,11 +3,13 @@ import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
 import {SuperMyPostContainer} from "../MyPosts/MyPosts/MyPostsContainer";
 import {ProfType} from "./Profile_Container";
 
-export const Profile = ({profile, getUserProfile, getStatus,status, updateStatusProfile}: ProfType) => {
+export const Profile = ({profile, getUserProfile, getStatus,status, updateStatusProfile, isAuth, authorizedUserId}: ProfType) => {
 
     return (
         <div>
             <ProfileInfo
+                isAuth={isAuth}
+                authorizedUserId={authorizedUserId}
                 updateStatusProfile={updateStatusProfile}
                 status={status}
                 getStatus={getStatus}

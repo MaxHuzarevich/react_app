@@ -7,23 +7,27 @@ import {AppStateType} from "../../State/redux-store";
 import {compose} from "redux";
 
 type PathParamsType = {
-    userId: string
+    userId: any
 }
 
 type MapStateToPropsType = {
-    profile: ProfileType,
+    profile: ProfileType
     status: string
+    authorizedUserId: number | null
+    isAuth: boolean
 }
 
 type MapDispatchToPropsType = {
     getUserProfile: (userId: string) => void
     getStatus: (userId: string) => void
-    updateStatusProfile: (status:string) => void
+    updateStatusProfile: (status: string) => void
 }
 
 const MapStateToProps = (state: AppStateType): MapStateToPropsType => ({
     profile: state.profilePage.profile,
-    status: state.profilePage.status
+    status: state.profilePage.status,
+    authorizedUserId: state.auth.id,
+    isAuth: state.auth.isAuth,
 })
 
 export type ProfType = MapDispatchToPropsType & MapStateToPropsType
@@ -35,7 +39,10 @@ class Profile_Container extends React.Component<CommonPropsType, any> {
     componentDidMount() {
         let userId = this.props.match.params.userId;
         if (!userId) {
-            userId = '18068'
+            userId = this.props.authorizedUserId
+            if(!userId){
+             this.props.history.push('/login')
+            }
         }
         this.props.getUserProfile(userId)
         this.props.getStatus(userId)

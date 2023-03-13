@@ -76,7 +76,7 @@ let MapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export const SuperUsersContainer = compose<React.ComponentType>(withAuthRedirect, connect(MapStateToProps, {
+export const SuperUsersContainer = compose<React.ComponentType>(connect(MapStateToProps, {
     follow, unfollow, setCurrentPage,
     toggleFollowingProgress, getUsers
 }))(UsersContainer)
