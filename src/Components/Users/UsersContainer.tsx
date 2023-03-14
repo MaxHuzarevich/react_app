@@ -1,7 +1,7 @@
 import React from "react";
 import {
     follow,
-    getUsers,
+    requestUsers,
     initialUsersStateType,
     setCurrentPage,
     toggleFollowingProgress,
@@ -13,6 +13,14 @@ import {Preloader} from "../Common/Preloader/Preloader";
 import {AppStateType} from "../State/redux-store";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
+import {
+    getCurrentPage,
+    getFollowingInProgress,
+    getIsFetching,
+    getPageSize,
+    getTotalUsersCount,
+    getUsers
+} from "../State/users-selectors";
 
 type UsersType = {
     follow: (userID: number) => void
@@ -67,16 +75,16 @@ type MapStateToPropsType = {
 
 let MapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        users: state.usersPage,
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress
+        users: getUsers(state),
+        pageSize: getPageSize(state),
+        totalUsersCount: getTotalUsersCount(state),
+        currentPage: getCurrentPage(state),
+        isFetching: getIsFetching(state),
+        followingInProgress: getFollowingInProgress(state)
     }
 }
 
 export const SuperUsersContainer = compose<React.ComponentType>(connect(MapStateToProps, {
     follow, unfollow, setCurrentPage,
-    toggleFollowingProgress, getUsers
+    toggleFollowingProgress, getUsers: requestUsers
 }))(UsersContainer)
