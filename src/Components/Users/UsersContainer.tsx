@@ -1,8 +1,8 @@
 import React from "react";
 import {
     follow,
-    requestUsers,
     initialUsersStateType,
+    requestUsers,
     setCurrentPage,
     toggleFollowingProgress,
     unfollow
@@ -11,7 +11,6 @@ import {connect} from "react-redux";
 import {Users} from "./Users";
 import {Preloader} from "../Common/Preloader/Preloader";
 import {AppStateType} from "../State/redux-store";
-import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 import {
     getCurrentPage,

@@ -6,7 +6,10 @@ import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {maxLengthCreator, required} from "../../../../utils/validators/validators";
 import {Textarea} from "../../../Common/FormsControls/FormsControls";
 
-export const MyPosts = ({addPost}: MyPostsType) => {
+export const MyPosts = React.memo((props: MyPostsType) => {
+    let {addPost} = props;
+
+    console.log('render')
 
     const postsData = store.getState().profilePage.posts.map(p =>
         <Post
@@ -32,7 +35,8 @@ export const MyPosts = ({addPost}: MyPostsType) => {
             {postsData}
         </div>
     )
-}
+})
+
 type formDataPostType = {
     post: string
 }
@@ -40,6 +44,7 @@ type formDataPostType = {
 const maxLength = maxLengthCreator(10)
 
 const AddPostForm: React.FC<InjectedFormProps<formDataPostType>> = (props) => {
+
     return (
         <form onSubmit={props.handleSubmit}>
             <Field
