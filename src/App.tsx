@@ -1,19 +1,21 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import './App.css';
 import {Navbar} from "./Components/Navbar/Navbar";
 import {Route} from 'react-router-dom';
 import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/News";
 import {Settings} from "./Components/Settings/Setings";
-import {SuperDialogsContainer} from "./Components/Dialogs/Dialogs/DialogsContainer";
 import {SuperUsersContainer} from './Components/Users/UsersContainer';
-import Profile_Container from "./Components/Profile/Profile/Profile_Container";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginPage from "./Components/LoginPage/LoginPage";
 import {connect} from "react-redux";
 import {initializeApp} from "./Components/State/app-reducer";
 import {AppStateType} from "./Components/State/redux-store";
 import {Preloader} from "./Components/Common/Preloader/Preloader";
+
+const SuperDialogsContainer = React.lazy(() => import("./Components/Dialogs/Dialogs/DialogsContainer"))
+const ProfileContainer = React.lazy(() => import("./Components/Profile/Profile/Profile_Container"));
+
 
 type MapStateToPropsType = {
     initialized: boolean
@@ -41,9 +43,17 @@ class App extends React.Component<AppType, any> {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
-                       render={() => <SuperDialogsContainer/>}/>
+                       render={() =>
+                           <Suspense fallback={<div>...load</div>}>
+                               <SuperDialogsContainer/>
+                           </Suspense>
+                       }/>
                 <Route path='/profile/:userId?'
-                       render={() => <Profile_Container/>}/>
+                       render={() =>
+                           <Suspense fallback={<div>...load</div>}>
+                               <ProfileContainer/>
+                           </Suspense>
+                       }/>
                 <Route path='/users'
                        render={() => <SuperUsersContainer/>}/>
                 <Route path='/news' component={Music}/>

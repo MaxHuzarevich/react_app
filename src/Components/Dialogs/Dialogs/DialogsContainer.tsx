@@ -32,6 +32,6 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         // }
     }
 }
-export const SuperDialogsContainer =
+const SuperDialogsContainer =
     compose<React.ComponentType>(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialogs)
-
+export default SuperDialogsContainer;
