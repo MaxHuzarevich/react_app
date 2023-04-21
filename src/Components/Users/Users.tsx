@@ -1,8 +1,9 @@
 import React from "react";
-import styles from "./Users_Class_Component.module.css";
 import UserPhoto from "../../assets/images/istockphoto.jpg";
-import {initialUsersStateType} from "../State/users-reducer";
+import {initialUsersStateType, userTypeForUserReducer} from "../State/users-reducer";
 import {NavLink} from "react-router-dom";
+import {Paginator} from "./Paginator";
+import {User} from "./User";
 
 
 type UsersType = {
@@ -11,68 +12,25 @@ type UsersType = {
     users: initialUsersStateType
     onPageChanged: (p: number) => void
     followingInProgress: []
+    portionSize: number
 }
 
 export const Users: React.FC<UsersType> = props => {
 
-    const {users, onPageChanged, follow, unfollow, followingInProgress} = props
+    const {users, onPageChanged, follow, unfollow, followingInProgress, portionSize} = props
 
-    let pagesCount = Math.ceil(users.totalUsersCount / users.pageSize)
-
-    let pages = []
-
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
     return (
         <div>
+            <Paginator portionSize={portionSize} users={users} onPageChanged={onPageChanged}/>
             <div>
-                {pages.map((p, index) => {
-                    return <span
-                        key={index}
-                        onClick={() => {
-                            onPageChanged(p)
-                        }}
-                        className={users.currentPage === p ? styles.selectedPage : ''}>
-                            {p}
-                        </span>
-                })}
+                {users.users.map(u => <User
+                    followingInProgress={followingInProgress}
+                    follow={follow}
+                    unfollow={unfollow}
+                    user={u}
+                    key={u.id}
+                />)}
             </div>
-            <div>
-            {
-                users.users.map(u => <div key={u.id} style={{margin: '5px'}}>
-                    <div>
-                        <NavLink to={'/profile/' + u.id}>
-                            <img src={u.photos.small !== null ? u.photos.small : UserPhoto} style={{width: '50px'}}
-                                 alt={'avatar'}/>
-                        </NavLink>
-                    </div>
-                    <div>
-                        {
-                            u.followed
-                                ?
-                                <button
-                                    disabled={followingInProgress.some(id => id === u.id)}
-                                    onClick={() => {
-                                        unfollow(u.id)
-                                    }}>Unfollow</button>
-                                :
-                                <button disabled={followingInProgress.some(id => id === u.id)}
-                                        onClick={() => {
-                                            follow(u.id)
-                                        }}>Follow</button>
-                        }
-                    </div>
-                    <div>
-                        <h3>name: {u.name}</h3>
-                        <span>{u.status}</span>
-                        <ul>
-                            <li>{'u.location.city'}</li>
-                            <li>{'u.location.country'}</li>
-                        </ul>
-                    </div>
-                </div>)
-            }</div>
         </div>
     )
 }

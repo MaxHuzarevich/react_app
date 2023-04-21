@@ -14,10 +14,10 @@ type formDataType = {
     rememberMe: boolean
 }
 
-export const LoginForm: React.FC<InjectedFormProps<formDataType>> = (props) => {
+export const LoginForm: React.FC<InjectedFormProps<formDataType>> = ({handleSubmit,error}) => {
 
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field
                     placeholder={'Login'}
@@ -39,7 +39,7 @@ export const LoginForm: React.FC<InjectedFormProps<formDataType>> = (props) => {
                 <Field component={Input} name={'rememberMe'} type={'checkbox'}/>
                 <span>remember me</span>
             </div>
-            {props.error && <div className={style.formSummaryError}>{props.error}</div>}
+            {error && <div className={style.formSummaryError}>{error}</div>}
             <div>
                 <button>login</button>
             </div>
@@ -54,11 +54,11 @@ type loginPageType = {
     isAuth: boolean
 }
 
-const LoginPage = (props: loginPageType) => {
+const LoginPage = ({isAuth, login}: loginPageType) => {
     const onSubmit = (formData: formDataType) => {
-        props.login(formData.login, formData.password, formData.rememberMe)
+        login(formData.login, formData.password, formData.rememberMe)
     }
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={'/profile'}/>
     }
     return (

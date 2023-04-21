@@ -5,7 +5,7 @@ import {
     requestUsers,
     setCurrentPage,
     toggleFollowingProgress,
-    unfollow
+    unfollow, userTypeForUserReducer
 } from "../State/users-reducer";
 import {connect} from "react-redux";
 import {Users} from "./Users";
@@ -31,6 +31,7 @@ type UsersType = {
     getUsers: (currentPage: number, pageSize: number) => void
     currentPage: number
     pageSize: number
+    portionSize: number
 }
 
 export class UsersContainer extends React.Component<UsersType, any> {
@@ -57,6 +58,7 @@ export class UsersContainer extends React.Component<UsersType, any> {
                     unfollow={this.props.unfollow}
                     follow={this.props.follow}
                     onPageChanged={this.onPageChanged}
+                    portionSize={this.props.portionSize}
                 />
             </>
         )

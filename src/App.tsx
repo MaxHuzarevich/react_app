@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Navbar} from "./Components/Navbar/Navbar";
-import {Route, withRouter} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/News";
 import {Settings} from "./Components/Settings/Setings";
@@ -11,7 +11,6 @@ import Profile_Container from "./Components/Profile/Profile/Profile_Container";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginPage from "./Components/LoginPage/LoginPage";
 import {connect} from "react-redux";
-import {compose} from "redux";
 import {initializeApp} from "./Components/State/app-reducer";
 import {AppStateType} from "./Components/State/redux-store";
 import {Preloader} from "./Components/Common/Preloader/Preloader";

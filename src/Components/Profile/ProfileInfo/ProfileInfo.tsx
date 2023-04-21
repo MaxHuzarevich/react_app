@@ -4,7 +4,6 @@ import {ProfileStatus} from "./Status";
 import photo from './../../../assets/images/istockphoto.jpg'
 
 export const ProfileInfo = ({profile, status, updateStatusProfile}: ProfType) => {
-
     return (
         <div style={{margin: '25px'}}>
             <div style={{
