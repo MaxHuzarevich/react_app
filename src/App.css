@@ -3,11 +3,15 @@
     display: grid;
     grid-template-areas:
     'header header'
-    'nav content';
+    'nav content'
+    'footer footer';
     grid-template-rows: 60px 1fr;
     grid-template-columns: 2fr 10fr;
+    background: linear-gradient(to bottom, #003366 0%, #ff0066 100%);
+    color: floralwhite;
 }
+
 .app-wrapper-content {
     grid-area: content;
-    background-color: lightslategray;
 }
+

@@ -44,14 +44,14 @@ class App extends React.Component<AppType, any> {
             <div className='app-wrapper-content'>
                 <Route path='/dialogs'
                        render={() =>
-                           <Suspense fallback={<div>...load</div>}>
+                           <Suspense fallback={<Preloader/>}>
                                <SuperDialogsContainer/>
                            </Suspense>
                        }/>
                 <Route path='/profile/:userId?'
                        render={() =>
-                           <Suspense fallback={<div>...load</div>}>
-                               <ProfileContainer/>
+                           <Suspense fallback={<Preloader/>}>
+                           <ProfileContainer/>
                            </Suspense>
                        }/>
                 <Route path='/users'

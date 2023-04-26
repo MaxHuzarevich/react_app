@@ -5,20 +5,17 @@ import {headerContainerPropsType} from "./HeaderContainer";
 
 export const Header = ({isAuth, login, logout}: headerContainerPropsType) => {
     return (
-        <div className={classes.header}>
-            <header>
-                <img
-                    src='https://cdn1.iconfinder.com/data/icons/social-media-outline-6/128/SocialMedia_Website-Outline-256.png'
-                    alt='logo'
-                />
-            </header>
-            <div className={classes.loginBlock}>
+        <header className={classes.header}>
+                <h1>
+                    Social Network
+                </h1>
+            <p>
                 {
                     isAuth
-                        ? <div>{login} - <button onClick={logout}>log out</button></div> :
+                        ? <div>{login}  <button onClick={logout}>Log out</button></div> :
                         <NavLink to={'/login'}>Login</NavLink>
                 }
-            </div>
-        </div>
+            </p>
+        </header>
     )
 }
