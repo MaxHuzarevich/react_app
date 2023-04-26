@@ -19,6 +19,7 @@ export const ADD_POST = 'ADD-POST'
 export const SET_USER_PROFILE = 'SET-USER-PROFILE'
 export const SET_STATUS = 'SET-STATUS'
 export const DELETE_POST = 'DELETE-POST'
+export const SAVE_PHOTO = 'SAVE-PHOTO'
 
 export const addPostAC = (newPost: string) => {
     return {
@@ -48,6 +49,13 @@ export const deletePostAC = (id: number) => {
     } as const
 }
 
+export const savePhotoSuccess = (photos: any) => {
+    return {
+        type: SAVE_PHOTO,
+        photos
+    } as const
+}
+
 export const getUserProfile = (userId: string) => async (dispatch: Dispatch<setUserProfileType>) => {
     const response = await profileAPI.getProfile(userId)
     dispatch(setUserProfile(response.data));
@@ -64,10 +72,18 @@ export const updateStatusProfile = (status: string) => async (dispatch: Dispatch
     }
 }
 
+export const savePhoto = (file: any) => async (dispatch: Dispatch<savePhotoType>) => {
+    const response = await profileAPI.savePhoto(file)
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos))
+    }
+}
+
 export type addPostActionType = ReturnType<typeof addPostAC>     //возвращаемый тип
 export type setUserProfileType = ReturnType<typeof setUserProfile>
 export type setStatusType = ReturnType<typeof setStatus>
 export type deletePostType = ReturnType<typeof deletePostAC>
+export type savePhotoType = ReturnType<typeof savePhotoSuccess>
 
 export type ProfileType = {
     userId: number
@@ -131,6 +147,11 @@ export const profileReducer = (state = initialState, action: actionTypes) => {
             return {
                 ...state,
                 status: action.status
+            }
+        case SAVE_PHOTO:
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.photos}
             }
     }
     return state

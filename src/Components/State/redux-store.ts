@@ -1,5 +1,12 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
-import {addPostActionType, deletePostType, profileReducer, setStatusType, setUserProfileType} from "./profile-reducer";
+import {
+    addPostActionType,
+    deletePostType,
+    profileReducer,
+    savePhotoType,
+    setStatusType,
+    setUserProfileType
+} from "./profile-reducer";
 import {addNewMessageText, dialogsReducer} from "./dialogs-reducer";
 import {
     followActionType,
@@ -20,7 +27,7 @@ export type actionTypes =
     addPostActionType | addNewMessageText | followActionType | unfollowActionType
     | setUsersActionType | setCurrentPageActionType | setTotalUserCountActionType
     | toggleIsFetchingActionType | setUserProfileType | setAuthUSerDataType | toggleFollowingProgressType
-    | setStatusType | InitializedACType | deletePostType
+    | setStatusType | InitializedACType | deletePostType | savePhotoType
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,

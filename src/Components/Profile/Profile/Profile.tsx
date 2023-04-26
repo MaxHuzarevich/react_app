@@ -1,13 +1,32 @@
 import React from "react";
 import {SuperMyPostContainer} from "../MyPosts/MyPosts/MyPostsContainer";
-import { ProfileInfo } from "../ProfileInfo/ProfileInfo";
+import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
 import {ProfType} from "./Profile_Container";
 
-export const Profile = ({profile, getUserProfile, getStatus,status, updateStatusProfile, isAuth, authorizedUserId}: ProfType) => {
+type IsOwnerType = {
+    isOwner: boolean
+}
+
+export type PrType = IsOwnerType & ProfType
+
+
+export const Profile = ({
+                            profile,
+                            getUserProfile,
+                            getStatus,
+                            status,
+                            updateStatusProfile,
+                            isAuth,
+                            authorizedUserId,
+                            isOwner,
+                            savePhoto
+                        }: PrType) => {
 
     return (
         <div>
             <ProfileInfo
+                savePhoto={savePhoto}
+                isOwner={isOwner}
                 isAuth={isAuth}
                 authorizedUserId={authorizedUserId}
                 updateStatusProfile={updateStatusProfile}
