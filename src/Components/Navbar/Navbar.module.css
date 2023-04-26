@@ -1,11 +1,20 @@
 .nav {
     grid-area: nav;
-    color: white;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
-.item a {
-    color: white;
+.nav a {
+    color: floralwhite;
     text-decoration: none;
+    margin: 0 auto;
 }
-.item a.active {
-    color: aliceblue;
+.nav a.active {
+    color: #ff0066;
+}
+
+.nav a:hover {
+    color: #ff0066;
 }
