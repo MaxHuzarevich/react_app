@@ -5,17 +5,17 @@ import {headerContainerPropsType} from "./HeaderContainer";
 
 export const Header = ({isAuth, login, logout}: headerContainerPropsType) => {
     return (
-        <header className={classes.header}>
+        <header className={classes.headerContainer}>
                 <h1>
                     Social Network
                 </h1>
-            <p>
+            <div>
                 {
                     isAuth
                         ? <div>{login}  <button onClick={logout}>Log out</button></div> :
                         <NavLink to={'/login'}>Login</NavLink>
                 }
-            </p>
+            </div>
         </header>
     )
 }

@@ -1,32 +1,50 @@
-.header {
-    grid-area: header;
+.headerContainer {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
+    padding: 10px;
 }
 
 h1 {
     margin: 10px;
     text-align: center;
     width: 250px;
-    border: 1px solid floralwhite;
+    border: 2px solid floralwhite;
     border-radius: 3px;
 }
 
-.header button {
-    background-color: #003366;
-    color: floralwhite;
-    border: 1px solid floralwhite;
+h1:hover {
+    color: #ff0066;
+    border: 2px solid #ff0066;
 }
 
-.header a {
+.headerContainer button {
     background-color: #003366;
     color: floralwhite;
-    border: 1px solid floralwhite;
+    border: 2px solid floralwhite;
+    border-radius: 3px;
+    padding: 5px;
+    font-weight: bolder;
+}
+
+.headerContainer a {
+    background-color: #003366;
+    color: floralwhite;
+    border: 2px solid floralwhite;
     text-decoration: none;
 }
 
-.header button:hover {
-    background-color: #ff0066;
+.headerContainer button:hover {
+    color: #ff0066;
+    border: 2px solid #ff0066;
     cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+    .headerContainer h1 {
+        font-size: large;
+    }
+    .headerContainer {
+        justify-content: center;
+    }
 }

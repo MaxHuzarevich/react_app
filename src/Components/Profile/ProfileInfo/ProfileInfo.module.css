@@ -1,0 +1,30 @@
+.profile {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin: 10px;
+    border: 2px solid floralwhite;
+    border-radius: 3px;
+}
+
+.profile button {
+    background-color: #003366;
+    color: floralwhite;
+    border: 2px solid floralwhite;
+}
+
+.profile img {
+    border-radius: 3px;
+}
+
+.profileImg {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+    .profile img {
+        width: 160px;
+    }
+}

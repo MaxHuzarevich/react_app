@@ -41,7 +41,7 @@ class App extends React.Component<AppType, any> {
         return <div className='app-wrapper'>
             <HeaderContainer/>
             <Navbar/>
-            <div className='app-wrapper-content'>
+            <div>
                 <Route path='/dialogs'
                        render={() =>
                            <Suspense fallback={<Preloader/>}>

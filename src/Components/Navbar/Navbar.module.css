@@ -1,10 +1,7 @@
 .nav {
-    grid-area: nav;
-    height: 400px;
     display: flex;
-    flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
+    flex-wrap: wrap;
 }
 .nav a {
     color: floralwhite;

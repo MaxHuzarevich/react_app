@@ -1,0 +1,35 @@
+.myPostContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    border: 2px solid floralwhite;
+    border-radius: 3px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.myPostInput {
+    display: flex;
+    flex-direction: column;
+}
+
+.myPostContainer button {
+    background-color: rgb(110 0 102);
+    color: floralwhite;
+    border: 2px solid floralwhite;
+    border-radius: 3px;
+    padding: 5px;
+    font-weight: bolder;
+}
+
+.myPostContainer textarea {
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+    width: 100%;
+    padding:10px;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
