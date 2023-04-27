@@ -9,6 +9,6 @@ type DialogItemType = {
 export const DialogItem = ({name}: DialogItemType) => {
 
         return <div className={classes.item}>
-            <NavLink to={'dialogs/'}>{name}</NavLink>
+            <>{name}</>
         </div>
     }

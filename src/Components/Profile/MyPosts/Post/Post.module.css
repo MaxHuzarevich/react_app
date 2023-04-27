@@ -1,7 +1,7 @@
 .item {
     color: blanchedalmond;
     border: 2px solid blanchedalmond;
-    width: 300px;
+    width: 400px;
     margin: 3%;
     padding: 3%;
     border-radius: 5px;
@@ -12,8 +12,8 @@
     margin: 10px;
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 800px){
     .item {
-        width: 70%;
+        width: 200px;
     }
 }

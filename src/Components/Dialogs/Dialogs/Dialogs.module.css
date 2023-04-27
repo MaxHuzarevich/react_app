@@ -1,6 +1,23 @@
 .dialogs {
-    display: grid;
-    grid-template-columns: 4fr 10fr;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 20px;
+    margin: 10px;
+    border: 2px solid floralwhite;
+    border-radius: 3px;
+}
+
+.dialogs button {
+    background-color: #003366;
+    color: floralwhite;
+    border: 2px solid floralwhite;
+    border-radius: 3px;
+}
+
+.dialogs button:hover {
+    color: #ff0066;
+    border: 2px solid #ff0066;
 }
 
 .dialogsItems {
@@ -8,7 +25,7 @@
 }
 
 .item {
-
+    text-decoration: none;
 }
 
 .messages {

@@ -8,17 +8,14 @@ import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 
 type mapStateToPropsType = {
     dialogs: InitialDialogsStateType
-    // newMessageBody: string
     isAuth: boolean
 }
 type mapDispatchToPropsType = {
-    // onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
     onSendMessageClick: (value: string) => void
 }
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         dialogs: state.dialogsPage,
-        // newMessageBody: state.dialogsPage.newMessageBody,
         isAuth: state.auth.isAuth
     }
 }
@@ -27,9 +24,6 @@ let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         onSendMessageClick: (value) => {
             dispatch(addNewMessageTextAC(value))
         }
-        // onNewMessageChange: (e: ChangeEvent<HTMLTextAreaElement>) => {
-        //     dispatch(updateNewMessageTextAC(e.currentTarget.value))
-        // }
     }
 }
 const SuperDialogsContainer =

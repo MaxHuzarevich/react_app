@@ -39,6 +39,7 @@ export type formDataDialogType = {
     message: string
 }
 const maxLength = maxLengthCreator(20)
+
 export const AddMessageForm: React.FC<InjectedFormProps<formDataDialogType>>
     = (props) => {
     return (

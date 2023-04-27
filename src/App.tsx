@@ -62,6 +62,9 @@ class App extends React.Component<AppType, any> {
                 <Route path={'/login'}
                        render={() => <LoginPage/>}/>
             </div>
+            <footer>
+            Social network
+            </footer>
         </div>
     }
 }

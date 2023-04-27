@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import styles from "./Users_Class_Component.module.css";
+import classes from "./Users_Class_Component.module.css";
 import {initialUsersStateType} from "../State/users-reducer";
 
 type PaginatorType = {
@@ -24,7 +24,7 @@ export const Paginator = ({users, onPageChanged, portionSize = 10}: PaginatorTyp
     let rightPortionPageNumber = portionNumber * portionSize
 
     return (
-        <div>
+        <div className={classes.paginator}>
             {portionNumber > 1 &&
             <button onClick={() => {
                 setPortionNumber(portionNumber - 1)
@@ -33,12 +33,11 @@ export const Paginator = ({users, onPageChanged, portionSize = 10}: PaginatorTyp
                 .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                 .map((p, index) => {
                     return <span
-                        style={{border: '1px solid black', borderRadius: '5px', color: 'white', padding:'3px'}}
                         key={index}
                         onClick={() => {
                             onPageChanged(p)
                         }}
-                        className={users.currentPage === p ? styles.selectedPage : ''}>
+                        className={users.currentPage === p ? classes.selectedPage : ''}>
                             {p}
                         </span>
                 })}

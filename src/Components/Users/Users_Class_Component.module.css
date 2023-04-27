@@ -1,4 +1,41 @@
-.selectedPage{
+.paginator {
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.paginator button {
+    background-color: #003366;
+    color: floralwhite;
+    border: 2px solid floralwhite;
+    border-radius: 3px;
+    width: 60px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.paginator button:hover {
+    color: #ff0066;
+    border: 2px solid #ff0066;
+}
+
+.selectedPage {
+    color: #ff0066;
     font-weight: bold;
 }
+
+.paginator span:hover {
+    color: #ff0066;
+}
+
+.paginator span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+    margin: 5px;
+}
+
     
