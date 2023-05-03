@@ -21,7 +21,7 @@ type MapDispatchToPropsType = {
     getUserProfile: (userId: string) => void
     getStatus: (userId: string) => void
     updateStatusProfile: (status: string) => void
-    savePhoto: (photo: any) => void
+    savePhoto: (photoFile: any) => void
 }
 
 const MapStateToProps = (state: AppStateType): MapStateToPropsType => ({

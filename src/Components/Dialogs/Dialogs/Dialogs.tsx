@@ -23,15 +23,17 @@ export const Dialogs = ({onSendMessageClick}: DialogsType) => {
     const addNewMessage = (formData: formDataDialogType) => onSendMessageClick(formData.message)
 
     return (
-        <div className={classes.dialogs}>
-            <div className={classes.dialogsItems}>
-                {dialogsData}
+        <section className={classes.container}>
+            <div className={classes.dialogs}>
+                <div className={classes.dialogsItems}>
+                    {dialogsData}
+                </div>
+                <div className={classes.messages}>
+                    {messagesData}
+                    <AddMessageFormRedux onSubmit={addNewMessage}/>
+                </div>
             </div>
-            <div className={classes.messages}>
-                {messagesData}
-                <AddMessageFormRedux onSubmit={addNewMessage}/>
-            </div>
-        </div>
+        </section>
     )
 }
 

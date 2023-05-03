@@ -33,13 +33,23 @@ let initialState: InitialDialogsStateType = {
         {id: 3, name: 'Fill'},
         {id: 4, name: 'Bob'},
         {id: 5, name: 'Cris'},
+        {id: 6, name: 'Fillip'},
+        {id: 7, name: 'Joe'},
+        {id: 8, name: 'Andy'},
+        {id: 9, name: 'Bill'},
+        {id: 10, name: 'Bobby'},
     ],
     messages: [
         {id: 1, message: 'Hi!'},
         {id: 2, message: 'Hello!'},
         {id: 3, message: 'Go!'},
         {id: 4, message: 'What!'},
-        {id: 5, message: 'Ooo!'},
+        {id: 5, message: '...!'},
+        {id: 6, message: 'eee!'},
+        {id: 7, message: 'oh!'},
+        {id: 8, message: 'hey!'},
+        {id: 9, message: 'Thanks!'},
+        {id: 10, message: 'Ooo!'},
     ]
 }
 

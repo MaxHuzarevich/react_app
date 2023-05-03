@@ -1,8 +1,9 @@
 import React from "react";
+import classes from "../../index.module.css";
 
 export const News = () => {
     return (
-        <div>
+        <div className={classes.container}>
             News!
         </div>
     )

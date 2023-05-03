@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import classes from "./Users_Class_Component.module.css";
+import classes from "./Users.module.css";
 import {initialUsersStateType} from "../State/users-reducer";
 
 type PaginatorType = {

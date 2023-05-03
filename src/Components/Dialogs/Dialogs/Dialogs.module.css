@@ -1,11 +1,14 @@
+.container {
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #7109AA;
+}
+
 .dialogs {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding: 20px;
-    margin: 10px;
-    border: 2px solid floralwhite;
-    border-radius: 3px;
 }
 
 .dialogs button {

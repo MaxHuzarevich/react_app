@@ -1,5 +1,4 @@
 import React, {Suspense} from 'react';
-import './App.css';
 import {Navbar} from "./Components/Navbar/Navbar";
 import {Route} from 'react-router-dom';
 import {Music} from "./Components/Music/Music";
@@ -38,10 +37,9 @@ class App extends React.Component<AppType, any> {
         if (!this.props.initialized) {
             return <Preloader/>
         }
-        return <div className='app-wrapper'>
+        return <body>
             <HeaderContainer/>
             <Navbar/>
-            <div>
                 <Route path='/dialogs'
                        render={() =>
                            <Suspense fallback={<Preloader/>}>
@@ -56,16 +54,12 @@ class App extends React.Component<AppType, any> {
                        }/>
                 <Route path='/users'
                        render={() => <SuperUsersContainer/>}/>
-                <Route path='/news' component={Music}/>
-                <Route path='/music' component={News}/>
+                <Route path='/news' component={News}/>
+                <Route path='/music' component={Music}/>
                 <Route path='/settings' component={Settings}/>
                 <Route path={'/login'}
                        render={() => <LoginPage/>}/>
-            </div>
-            <footer>
-            Social network
-            </footer>
-        </div>
+        </body>
     }
 }
 

@@ -24,15 +24,15 @@ export const MyPosts = React.memo((props: MyPostsType) => {
     }
 
     return (
-        <div className={classes.myPostContainer}>
-            <div className={classes.myPostInput}>
+        <div className={classes.container}>
+            <div className={classes.myPostWrap}>
                 <h3>
                     My posts
                 </h3>
                 <AddPostReduxForm onSubmit={AddPost}/>
-            </div>
             <div>
                 {postsData}
+            </div>
             </div>
         </div>
     )

@@ -7,6 +7,7 @@ import {login} from "../State/auth-reducer";
 import {Redirect} from "react-router-dom";
 import {AppStateType} from "../State/redux-store";
 import style from './../Common/FormsControls/FormsControls.module.css'
+import classes from './Login.module.css'
 
 type formDataType = {
     login: string
@@ -62,7 +63,7 @@ const LoginPage = ({isAuth, login}: loginPageType) => {
         return <Redirect to={'/profile'}/>
     }
     return (
-        <div>
+        <div className={classes.login}>
             <h1>Login</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
         </div>

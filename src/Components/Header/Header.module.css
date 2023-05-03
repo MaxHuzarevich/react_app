@@ -1,8 +1,24 @@
-.headerContainer {
+.header {
+    height: 60px;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+.container {
+    max-width: 1170px;
+    width: 100%;
+    padding: 0 15px;
+    margin: 0 auto;
+    height: 100%;
+    background-color: #48036F;
+}
+
+.headerWrap {
+    height: 100%;
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    padding: 10px;
+    align-items: center;
 }
 
 h1 {
@@ -18,33 +34,39 @@ h1:hover {
     border: 2px solid #ff0066;
 }
 
-.headerContainer button {
-    background-color: #003366;
+.header button {
+    background-color: #48036F;
     color: floralwhite;
     border: 2px solid floralwhite;
     border-radius: 3px;
     padding: 5px;
     font-weight: bolder;
+    margin-left: 5px;
 }
 
-.headerContainer a {
-    background-color: #003366;
-    color: floralwhite;
-    border: 2px solid floralwhite;
-    text-decoration: none;
-}
-
-.headerContainer button:hover {
+.header button:hover {
     color: #ff0066;
     border: 2px solid #ff0066;
     cursor: pointer;
 }
 
+.header a {
+    text-decoration: none;
+    color: floralwhite;
+    font-weight: bolder;
+}
+
+.header a:hover {
+    color: #ff0066;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 500px) {
-    .headerContainer h1 {
+    .header h1 {
         font-size: large;
+        width: 150px;
     }
-    .headerContainer {
+    .header {
         justify-content: center;
     }
 }

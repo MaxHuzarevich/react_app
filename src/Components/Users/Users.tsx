@@ -1,9 +1,8 @@
 import React from "react";
-import UserPhoto from "../../assets/images/istockphoto.jpg";
-import {initialUsersStateType, userTypeForUserReducer} from "../State/users-reducer";
-import {NavLink} from "react-router-dom";
+import {initialUsersStateType} from "../State/users-reducer";
 import {Paginator} from "./Paginator";
 import {User} from "./User";
+import classes from "./Users.module.css";
 
 
 type UsersType = {
@@ -22,7 +21,7 @@ export const Users: React.FC<UsersType> = props => {
     return (
         <div>
             <Paginator portionSize={portionSize} users={users} onPageChanged={onPageChanged}/>
-            <div>
+            <div className={classes.users}>
                 {users.users.map(u => <User
                     followingInProgress={followingInProgress}
                     follow={follow}

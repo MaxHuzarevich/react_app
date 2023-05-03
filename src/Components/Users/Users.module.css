@@ -1,0 +1,79 @@
+.users {
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #7109AA;
+}
+
+.users button {
+    color: floralwhite;
+    border: 2px solid floralwhite;
+    border-radius: 3px;
+    padding: 5px;
+    font-weight: bolder;
+    background-color: #7109AA;
+}
+
+.users button:hover {
+    color: #ff0066;
+    border: 2px solid #ff0066;
+    cursor: pointer;
+}
+
+.user {
+    border: 2px solid floralwhite;
+    border-radius: 3px;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    width: 200px;
+}
+
+.paginator {
+    max-width: 1170px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #7109AA;
+}
+
+.paginator button {
+    background-color: #7109AA;
+    color: floralwhite;
+    border: 2px solid floralwhite;
+    border-radius: 3px;
+    width: 60px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.paginator button:hover {
+    color: #ff0066;
+    border: 2px solid #ff0066;
+}
+
+.selectedPage {
+    color: #ff0066;
+    font-weight: bold;
+}
+
+.paginator span:hover {
+    color: #ff0066;
+}
+
+.paginator span {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight: bold;
+    margin: 5px;
+}
+
+    
