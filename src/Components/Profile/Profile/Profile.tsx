@@ -1,14 +1,19 @@
 import React from "react";
 import {SuperMyPostContainer} from "../MyPosts/MyPosts/MyPostsContainer";
 import {ProfileInfo} from "../ProfileInfo/ProfileInfo";
-import {ProfType} from "./Profile_Container";
+import {ProfileType} from "../../State/profile-reducer";
 
-type IsOwnerType = {
-    isOwner: boolean
+export type ProfilePropsType = {
+    isOwner: boolean,
+    updateStatusProfile: (status: string) => void,
+    status: string,
+    getStatus: (userId: string) => void,
+    getUserProfile: (userId: string) => void,
+    profile: ProfileType,
+    isAuth: boolean,
+    authorizedUserId: number | null,
+    savePhoto: (photo: any) => void,
 }
-
-export type PrType = IsOwnerType & ProfType
-
 
 export const Profile = ({
                             profile,
@@ -20,7 +25,7 @@ export const Profile = ({
                             authorizedUserId,
                             isOwner,
                             savePhoto
-                        }: PrType) => {
+                        }: ProfilePropsType) => {
 
     return (
         <div>
@@ -34,7 +39,7 @@ export const Profile = ({
                 getStatus={getStatus}
                 profile={profile}
                 getUserProfile={getUserProfile}
-            />
+                />
             <SuperMyPostContainer/>
         </div>
     )

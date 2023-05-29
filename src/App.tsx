@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import {Navbar} from "./Components/Navbar/Navbar";
-import {Route} from 'react-router-dom';
+import {Redirect, Route} from 'react-router-dom';
 import {Music} from "./Components/Music/Music";
 import {News} from "./Components/News/News";
 import {Settings} from "./Components/Settings/Setings";
@@ -38,27 +38,30 @@ class App extends React.Component<AppType, any> {
             return <Preloader/>
         }
         return <body>
-            <HeaderContainer/>
-            <Navbar/>
-                <Route path='/dialogs'
-                       render={() =>
-                           <Suspense fallback={<Preloader/>}>
-                               <SuperDialogsContainer/>
-                           </Suspense>
-                       }/>
-                <Route path='/profile/:userId?'
-                       render={() =>
-                           <Suspense fallback={<Preloader/>}>
+        <HeaderContainer/>
+        <Navbar/>
+        <switch>
+            <Route exact path={'/'} render={() => <Redirect to={'/profile'}/>}/>
+            <Route path='/dialogs'
+                   render={() =>
+                       <Suspense fallback={<Preloader/>}>
+                           <SuperDialogsContainer/>
+                       </Suspense>
+                   }/>
+            <Route path='/profile/:userId?'
+                   render={() =>
+                       <Suspense fallback={<Preloader/>}>
                            <ProfileContainer/>
-                           </Suspense>
-                       }/>
-                <Route path='/users'
-                       render={() => <SuperUsersContainer/>}/>
-                <Route path='/news' component={News}/>
-                <Route path='/music' component={Music}/>
-                <Route path='/settings' component={Settings}/>
-                <Route path={'/login'}
-                       render={() => <LoginPage/>}/>
+                       </Suspense>
+                   }/>
+            <Route path='/users'
+                   render={() => <SuperUsersContainer/>}/>
+            <Route path='/news' component={News}/>
+            <Route path='/music' component={Music}/>
+            <Route path='/settings' component={Settings}/>
+            <Route path={'/login'}
+                   render={() => <LoginPage/>}/>
+        </switch>
         </body>
     }
 }

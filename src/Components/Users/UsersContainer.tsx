@@ -5,7 +5,7 @@ import {
     requestUsers,
     setCurrentPage,
     toggleFollowingProgress,
-    unfollow, userTypeForUserReducer
+    unfollow
 } from "../State/users-reducer";
 import {connect} from "react-redux";
 import {Users} from "./Users";

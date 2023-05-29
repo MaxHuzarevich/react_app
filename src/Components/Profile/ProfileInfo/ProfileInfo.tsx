@@ -1,10 +1,10 @@
 import React, {ChangeEvent} from "react";
 import {ProfileStatus} from "./Status";
 import photo from './../../../assets/images/istockphoto.jpg'
-import {PrType} from "../Profile/Profile";
 import classes from './ProfileInfo.module.css'
+import {ProfilePropsType} from "../Profile/Profile";
 
-export const ProfileInfo = ({profile, status, updateStatusProfile, isOwner, savePhoto}: PrType) => {
+export const ProfileInfo = ({profile, status, updateStatusProfile, isOwner, savePhoto}: ProfilePropsType) => {
 
     const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files.length) {
